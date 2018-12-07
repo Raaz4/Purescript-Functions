@@ -37,7 +37,7 @@ main = do
   logShow (when1 false (Just unit))
 
   --  Operators
-  
+
   logShow (quot <$> arrayint <*> arrayint)
   logShow ([ad, sub] <*> arrayint)
   logShow (arrayint <* [ad, sub])
