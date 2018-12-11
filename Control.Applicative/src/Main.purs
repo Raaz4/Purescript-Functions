@@ -39,10 +39,10 @@ main = do
   --  Operators
 
   logShow $ quot <$> arrayint <*> arrayint
-  logShow $ [ad, sub] <*> arrayint
-  logShow $ arrayint <* [ad, sub]
-  logShow $ [ad, sub] *> arrayint
-  logShow $ ad <$> arrayint
-  logShow $ 3 <$ arrayint
-  logShow $ arrayint $> 6
-  logShow $ arrayint <#> ad
+  logShow $ [ad, sub] <*> arrayint -- Operator alias for Control.Apply.apply (left-associative / precedence 4)
+  logShow $ arrayint <* [ad, sub] -- Operator alias for Control.Apply.applyFirst (left-associative / precedence 4)
+  logShow $ [ad, sub] *> arrayint -- Operator alias for Control.Apply.applySecond (left-associative / precedence 4)
+  logShow $ ad <$> arrayint -- Operator alias for Data.Functor.map (left-associative / precedence 4)
+  logShow $ 3 <$ arrayint -- Operator alias for Data.Functor.voidRight (left-associative / precedence 4)
+  logShow $ arrayint $> 6 -- Operator alias for Data.Functor.voidLeft (left-associative / precedence 4)
+  logShow $ arrayint <#> ad -- Operator alias for Data.Functor.mapFlipped (left-associative / precedence 1)
