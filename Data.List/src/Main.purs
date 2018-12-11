@@ -113,31 +113,31 @@ foldM1 m a list = foldM m a list
 
 main :: Effect Unit
 main = do
-  -- logShow (list)
-  -- logShow (null (Nil))
-  -- logShow (insertBy1 invertCompare 5 list)
-  -- logShow (insert1 9 list)
-  -- logShow (elemIndex1 5 list)
-  -- logShow (elemLastIndex1 5 list)
-  -- logShow (findIndex1 even list)
-  -- logShow (insertAt1 2 3 list)
-  -- logShow (deleteAt1 4 list)
-  -- logShow (updateAt1 2 3 list)
-  -- logShow (reverse1 list)
-  -- logShow (filter1 odd list)
-  -- logShow (mapMaybe1 fromNumber listn)
-  -- logShow (catMaybes1 listm)
-  -- logShow (mapWithIndex1 drop list)
-  -- logShow (takeEnd1 4 list)
-  -- logShow (takeWhile1 odd list)
-  -- logShow (span1 odd list)
-  -- logShow (sort1 list)
-  -- logShow (sortBy1 invertCompare list)
-  logShow (group1 list)
-  logShow (partition1 even list)
-  logShow (union1 list listi)
-  logShow (delete1 4 list)
-  -- logShow (difference1 list listi)
-  logShow (intersect1 list listi)
-  logShow (transpose1 listl)
-  -- logShow (foldM1 toNum 3 list)
+  logShow $ list
+  logShow $ null $ Nil
+  logShow $ insertBy1 invertCompare 5 list
+  logShow $ insert1 9 list
+  logShow $ elemIndex1 5 list
+  logShow $ elemLastIndex1 5 list
+  logShow $ findIndex1 even list
+  logShow $ insertAt1 2 3 list
+  logShow $ deleteAt1 4 list
+  logShow $ updateAt1 2 3 list
+  logShow $ reverse1 list
+  logShow $ filter1 odd list
+  logShow $ mapMaybe1 fromNumber listn
+  logShow $ catMaybes1 listm
+  -- logShow $ mapWithIndex1 drop list
+  logShow $ takeEnd1 4 list
+  logShow $ takeWhile1 odd list
+  logShow $ span1 odd list
+  logShow $ sort1 list
+  logShow $ sortBy1 invertCompare list
+  logShow $ group1 list
+  logShow $ partition1 even list
+  logShow $ union1 list listi
+  logShow $ delete1 4 list
+  logShow $ difference1 list listi
+  logShow $ intersect1 list listi
+  logShow $ transpose1 listl
+  -- logShow $ foldM1 toNum 3 list

@@ -4,6 +4,8 @@ import Prelude
 import Effect (Effect)
 import Data.Either
 import Control.Alt
+import Math
+import Data.Maybe
 import Effect.Class.Console (logShow)
 
 either1 :: forall a b c. (a -> c) -> (b -> c) -> Either a b -> c
@@ -29,5 +31,5 @@ hush1 a = hush a
 
 main :: Effect Unit
 main = do
-  -- logShow (isLeft1 (Either 1 4))
-  -- logShow (fromLeft1 (Either 9 4))
+  -- logShow $ either1 trunc floor $ Either 10.23 41.2
+  -- logShow $ fromLeft1 $ Either 9 4

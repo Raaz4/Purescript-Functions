@@ -21,3 +21,11 @@ infinity1 = infinity
 isFinite1 :: Number -> Boolean
 isFinite1 f = isFinite f
 
+main :: Effect Unit
+main = do
+  logShow $ fromString1 "100.00"
+  logShow $ nan1
+  logShow $ isNaN1 nan
+  logShow $ infinity1
+  logShow $ isFinite1 30.39
+

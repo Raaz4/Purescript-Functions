@@ -10,6 +10,7 @@ import Data.Maybe
 import Data.String
 import Data.Int (round)
 import Data.Int
+import Math (ceil)
 import Math
 import Data.Tuple
 import Debug.Trace
@@ -122,24 +123,27 @@ length1 a = length a
 
 main :: Effect Unit
 main = do
-  logShow (foldrDefault1 add 6 array)
-  -- logShow (foldMapDefaultL1 add array)
-  -- logShow (fold1 arrayfunc)
-  -- logShow (foldM1 toNum 4 arrayint)
-  logShow (traverse1 fromNumber array)
-  logShow (for1 array fromNumber)
-  logShow (sequence arraym)
-  -- logShow (surround1 )
-  -- logShow (and1 array)
-  logShow (sum1 array)
-  logShow (product1 array)
-  logShow (element 1.0 array)
-  logShow (notElement 2.33 array)
-  logShow (indexleft 4 array)
-  logShow (indexright 3 array)
-  logShow (find1 even1 arrayint)
-  logShow (findMap1 fromNumber array)
-  logShow (maximum1 array)
-  logShow (minimum1 array)
-  logShow (null array)
-  logShow (length1 array)
+  logShow $ foldrDefault1 add 6 array
+  -- logShow $ foldMapDefaultL1 add array
+  -- logShow $ fold1 arrayfunc
+  -- logShow $ foldM1 toNum 4 arrayint
+  logShow $ traverse1 fromNumber array
+  logShow $ for1 array fromNumber
+  logShow $ sequence arraym
+  -- logShow $ surround1 
+  -- logShow $ and1 array
+  -- logShow $ or1 array
+  -- logShow $ all1 ceil array
+  -- logShow $ any1 ceil array
+  logShow $ sum1 array
+  logShow $ product1 array
+  logShow $ element 1.0 array
+  logShow $ notElement 2.33 array
+  logShow $ indexleft 4 array
+  logShow $ indexright 3 array
+  logShow $ find1 even1 arrayint
+  logShow $ findMap1 fromNumber array
+  logShow $ maximum1 array
+  logShow $ minimum1 array
+  logShow $ null array
+  -- logShow $ length1 array

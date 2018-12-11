@@ -32,3 +32,14 @@ rem1 q d = rem q d
 pow1 :: Int -> Int -> Int
 pow1 p r = pow p r
 
+main :: Effect _
+main = do
+       logShow $ round1 6.0
+       logShow $ even1 5
+       logShow $ odd1 4
+       logShow $ fromNumber1 11.0
+       logShow $ fromString1 "11"
+       logShow $ toNumber1 9
+       logShow $ quot1 2 3
+       logShow $ rem1 1 3
+       logShow $ pow1 2 2

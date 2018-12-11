@@ -31,18 +31,18 @@ when1 b u = when b u
 
 main :: Effect Unit
 main = do
-  logShow (apply1 [ad, sub] arrayint)
-  logShow (liftA11 ceil arraynum)
-  logShow (unless1 true (Just unit))
-  logShow (when1 false (Just unit))
+  logShow $ apply1 [ad, sub] arrayint
+  logShow $ liftA11 ceil arraynum
+  logShow $ unless1 true $ Just unit
+  logShow $ when1 false $ Just unit
 
   --  Operators
 
-  logShow (quot <$> arrayint <*> arrayint)
-  logShow ([ad, sub] <*> arrayint)
-  logShow (arrayint <* [ad, sub])
-  logShow ([ad, sub] *> arrayint)
-  logShow (ad <$> arrayint)
-  logShow (3 <$ arrayint)
-  logShow (arrayint $> 6)
-  logShow (arrayint <#> ad)
+  logShow $ quot <$> arrayint <*> arrayint
+  logShow $ [ad, sub] <*> arrayint
+  logShow $ arrayint <* [ad, sub]
+  logShow $ [ad, sub] *> arrayint
+  logShow $ ad <$> arrayint
+  logShow $ 3 <$ arrayint
+  logShow $ arrayint $> 6
+  logShow $ arrayint <#> ad

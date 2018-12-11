@@ -44,15 +44,15 @@ lastIndexOf1 p s = lastIndexOf p s
 
 main :: Effect Unit
 main = do
-  logShow (take1 3 "take")
-  logShow (drop 2 "drop")
-  logShow (stripPrefix1 (Pattern "s") "stripPrefix")
-  logShow (length1 "length")
-  logShow (splitAt1 4 "splitAt")
-  logShow (joinWith1 "&" ["join","With"])
-  logShow (indexOf1 (Pattern "&") "index&Of")
-  logShow (contains1 (Pattern "$") "contain$")
-  logShow (toUpper1 "toUpper")
-  logShow (replace1 (Pattern "a") (Replacement "@") "replace")
-  logShow (null "null")
-  logShow (lastIndexOf1 (Pattern "@") "l@astIndexOf")
+  logShow $ take1 3 "take"
+  logShow $ drop 2 "drop"
+  logShow $ stripPrefix1 (Pattern "s") "stripPrefix"
+  logShow $ length1 "length"
+  logShow $ splitAt1 4 "splitAt"
+  logShow $ joinWith1 "&" ["join","With"]
+  logShow $ indexOf1 (Pattern "&") "index&Of"
+  logShow $ contains1 (Pattern "$") "contain$"
+  logShow $ toUpper1 "toUpper"
+  logShow $ replace1 (Pattern "a") (Replacement "@") "replace"
+  logShow $ null "null"
+  logShow $ lastIndexOf1 (Pattern "@") "l@astIndexOf"

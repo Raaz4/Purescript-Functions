@@ -63,18 +63,18 @@ concatMap1 array1 array2 = concatMap array1 array2
 
 main :: Effect Unit
 main = do
-  logShow (fromFoldable1 (Just array))
-  -- logShow (toUnfoldable [array,array])
-  logShow (singleton1 "abc")
-  logShow (range1 90 4)
-  logShow (replicate1 3 "abc")
-  logShow (cons1 49.76 array)
-  logShow (snoc1 array 56.093)
-  logShow (insert1 5.54 array)
-  logShow (head1 array)
-  logShow (tail1 array)
-  logShow (init1 array)
-  logShow (findIndex1 (contains $ Pattern "c") arraystr)
-  logShow (concatinate arrayar)
-  logShow (concatMap1 singleton1 array)
-  logShow (4.37 : array) -- cons = :
+  logShow $ fromFoldable1 $ Just array
+  -- logShow $ toUnfoldable [array,array]
+  logShow $ singleton1 "abc"
+  logShow $ range1 90 4
+  logShow $ replicate1 3 "abc"
+  logShow $ cons1 49.76 array
+  logShow $ snoc1 array 56.093
+  logShow $ insert1 5.54 array
+  logShow $ head1 array
+  logShow $ tail1 array
+  logShow $ init1 array
+  logShow $ findIndex1 (contains (Pattern "c")) arraystr
+  logShow $ concatinate arrayar
+  logShow $ concatMap1 singleton1 array
+  logShow $ 4.37 : array -- cons -> :

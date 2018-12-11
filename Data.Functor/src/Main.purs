@@ -25,9 +25,8 @@ flap1 a b = flap a b
 
 main :: Effect Unit
 main = do
-  logShow (mapFlipped1 array add)
-  logShow (void1 array)
-  logShow (voidRight1 3 array)
-  logShow (voidLeft1 array 9)
-  logShow (flap1 (-) 5 9)
-  -- logShow ((+) 5 3<@> 9)
+  logShow $ mapFlipped1 array add
+  logShow $ void1 array
+  logShow $ voidRight1 3 array
+  logShow $ voidLeft1 array 9
+  logShow $ flap1 (-) 5 9
