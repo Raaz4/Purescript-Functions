@@ -18,10 +18,11 @@ import Debug.Trace
 add :: Number -> Int -> Int
 add n i = (round n) + i
 
-add1 :: Number -> Number -> Number
-add1 a b = a + b
+add1 :: Int -> Int -> Maybe Int
+add1 a b = Just(a + b)
 
-toNum a b = fromNumber $ add1 a b
+add2 :: Int -> Array (Maybe Int)
+add2 i = [Just (i+1)]
 
 sub a b = b - a
 mul a b = a * b
@@ -31,6 +32,8 @@ arraystr = ["a", "b", "c", "d", "e"]
 
 even1 :: Int -> Boolean
 even1 e = even e
+
+arraym1 = [[(Just 4)],[(Just 6),(Just 67),(Just 98)],[(Just 4),(Just 22),(Just 48),(Just 49)]]
 
 arraym = [(Just 4),(Just 6),(Just 67),(Just 98),(Just 4),(Just 22),(Just 48),(Just 49)]
 array = [1.55, 7.8, 9.9, 6.8, 9.9, 0.3, 99.0]
@@ -124,17 +127,19 @@ length1 a = length a
 main :: Effect Unit
 main = do
   logShow $ foldrDefault1 add 6 array
-  -- logShow $ foldMapDefaultL1 add array
-  -- logShow $ fold1 arrayfunc
-  -- logShow $ foldM1 toNum 4 arrayint
+  logShow $ foldMapDefaultL1 add2 arrayint
+  logShow $ foldMapDefaultR1 add2 arrayint
+  logShow $ fold1 arraym1
+  logShow $ foldM1 add1 4 arrayint
   logShow $ traverse1 fromNumber array
   logShow $ for1 array fromNumber
   logShow $ sequence arraym
-  -- logShow $ surround1 
-  -- logShow $ and1 array
-  -- logShow $ or1 array
-  -- logShow $ all1 ceil array
-  -- logShow $ any1 ceil array
+  logShow $ intercalate1 "," arraystr
+  logShow $ surround1 "*" arraystr
+  logShow $ and1 [true,false,true,true,false,false]
+  logShow $ or1 [true,false,true,true,false,false]
+  logShow $ all1 not [true,false,true,true,false,false]
+  logShow $ any1 not [true,false,true,true,false,false]
   logShow $ sum1 array
   logShow $ product1 array
   logShow $ element 1.0 array
@@ -146,4 +151,4 @@ main = do
   logShow $ maximum1 array
   logShow $ minimum1 array
   logShow $ null array
-  -- logShow $ length1 array
+  -- logShow $ length1 arrayint

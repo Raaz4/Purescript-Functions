@@ -64,7 +64,7 @@ concatMap1 array1 array2 = concatMap array1 array2
 main :: Effect Unit
 main = do
   logShow $ fromFoldable1 $ Just array
-  -- logShow $ toUnfoldable [array,array]
+  logShow $ toUnfoldable $ fromFoldable1 array
   logShow $ singleton1 "abc"
   logShow $ range1 90 4
   logShow $ replicate1 3 "abc"

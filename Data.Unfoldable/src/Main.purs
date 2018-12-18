@@ -25,6 +25,6 @@ fromMaybe1 m = fromMaybe m
 main :: Effect _
 main = do
   -- logShow $ replicate1 4 "this"
-  -- logShow $ replicateA1 3 $ Just "this"
+  -- logShow $ replicateA1 3 [5, 7, 9]
   -- logShow $ none1
   -- logShow $ fromMaybe1 $ Just 8

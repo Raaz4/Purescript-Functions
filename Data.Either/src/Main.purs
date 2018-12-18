@@ -29,7 +29,7 @@ note1 a b = note a b
 hush1 :: forall a b. Either a b -> Maybe b
 hush1 a = hush a
 
-main :: Effect Unit
-main = do
+-- main :: Effect Unit
+-- main = do
   -- logShow $ either1 trunc floor $ Either 10.23 41.2
   -- logShow $ fromLeft1 $ Either 9 4

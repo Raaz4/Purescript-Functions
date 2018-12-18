@@ -35,6 +35,6 @@ main = do
   logShow $ Just 2.0 >>= fromNumber
   logShow $ void1 array
   logShow $ liftM11 ceil $ Just 4.9
-  logShow $ ap1 $ Just ceil $ Just 5.6
-  logShow $ whenM1 $ Just true $ Just unit
-  logShow $ unlessM1 $ Just true $ Just unit
+  logShow $ ap1 (Just ceil) (Just 5.6)
+  logShow $ whenM1 (Just true) (Just unit)
+  logShow $ unlessM1 (Just true) (Just unit)
