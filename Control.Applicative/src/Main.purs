@@ -7,6 +7,10 @@ import Control.Applicative
 import Math
 import Data.Maybe
 
+-- Instances
+-- Applicative (Function r)
+-- Applicative Array
+
 quot :: Int -> Int -> Int
 quot a b = a / b
 

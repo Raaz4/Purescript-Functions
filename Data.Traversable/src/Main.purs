@@ -7,11 +7,19 @@ import Data.Traversable
 import Data.Maybe
 import Data.Maybe.Last
 import Data.Tuple
--- import Data.Traversable.Accum
 import Data.Monoid.Multiplicative
 import Data.Int
 
-type Accum s a = {accum :: s, value :: a}
+-- Instances
+-- Traversable Array
+-- Traversable Maybe
+-- Traversable First
+-- Traversable Last
+-- Traversable Additive
+-- Traversable Dual
+-- Traversable Conj
+-- Traversable Disj
+-- Traversable Multiplicative
 
 first :: forall a b. b -> a -> b
 first b a = b

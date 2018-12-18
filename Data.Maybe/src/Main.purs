@@ -7,6 +7,27 @@ import Data.Maybe
 import Partial.Unsafe (unsafePartial)
 import Math
 
+-- Instances
+-- Functor Maybe
+-- Apply Maybe
+-- Applicative Maybe
+-- Alt Maybe
+-- Plus Maybe
+-- Alternative Maybe
+-- Bind Maybe
+-- Monad Maybe
+-- MonadZero Maybe
+-- Extend Maybe
+-- Invariant Maybe
+-- (Semigroup a) => Semigroup (Maybe a)
+-- (Semigroup a) => Monoid (Maybe a)
+-- (Eq a) => Eq (Maybe a)
+-- Eq1 Maybe
+-- (Ord a) => Ord (Maybe a)
+-- Ord1 Maybe
+-- (Bounded a) => Bounded (Maybe a)
+-- (Show a) => Show (Maybe a)
+
 maybe1 :: forall a b. b -> (a -> b) -> Maybe a -> b
 maybe1 b f j = maybe b f j
 

@@ -5,6 +5,14 @@ import Effect (Effect)
 import Effect.Class.Console (logShow)
 import Data.Monoid
 
+-- Instances
+-- Monoid Unit
+-- Monoid Ordering
+-- (Monoid b) => Monoid (a -> b)
+-- Monoid String
+-- Monoid (Array a)
+-- (RowToList row list, MonoidRecord list row row) => Monoid {  | row }
+
 arrayint = [1,2,3,4,5,6,7,8,9]
 
 power1 :: forall m. Monoid m => m -> Int -> m

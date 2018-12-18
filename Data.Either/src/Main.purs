@@ -2,11 +2,37 @@ module Main where
 
 import Prelude
 import Effect (Effect)
+import Data.Either (Either)
 import Data.Either
 import Control.Alt
 import Math
 import Data.Maybe
 import Effect.Class.Console (logShow)
+
+-- Instances
+-- Functor (Either a)
+-- FunctorWithIndex Unit (Either a)
+-- Invariant (Either a)
+-- Bifunctor Either
+-- Apply (Either e)
+-- Applicative (Either e)
+-- Alt (Either e)
+-- Bind (Either e)
+-- Monad (Either e)
+-- Extend (Either e)
+-- (Show a, Show b) => Show (Either a b)
+-- (Eq a, Eq b) => Eq (Either a b)
+-- (Eq a) => Eq1 (Either a)
+-- (Ord a, Ord b) => Ord (Either a b)
+-- (Ord a) => Ord1 (Either a)
+-- (Bounded a, Bounded b) => Bounded (Either a b)
+-- Foldable (Either a)
+-- FoldableWithIndex Unit (Either a)
+-- Bifoldable Either
+-- Traversable (Either a)
+-- TraversableWithIndex Unit (Either a)
+-- Bitraversable Either
+-- (Semigroup b) => Semigroup (Either a b)
 
 either1 :: forall a b c. (a -> c) -> (b -> c) -> Either a b -> c
 either1 a b c = either a b c
@@ -29,7 +55,9 @@ note1 a b = note a b
 hush1 :: forall a b. Either a b -> Maybe b
 hush1 a = hush a
 
--- main :: Effect Unit
--- main = do
-  -- logShow $ either1 trunc floor $ Either 10.23 41.2
+a = Either 12.33 6.33
+
+main :: Effect Unit
+main = do
+  logShow $ either1 trunc floor a
   -- logShow $ fromLeft1 $ Either 9 4

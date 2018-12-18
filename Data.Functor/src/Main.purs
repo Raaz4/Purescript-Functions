@@ -5,6 +5,10 @@ import Effect (Effect)
 import Effect.Class.Console (logShow)
 import Data.Functor
 
+-- Instances
+-- Functor (Function r)
+-- Functor Array
+
 add a = a + 6
 array = [1,2,5,4,68,54,3,2,2,3]
 

@@ -7,9 +7,15 @@ import Control.Bind
 import Data.Int
 import Data.Maybe
 import Data.Array
-import Math (ceil, exp)
 
+-- Instances
+-- Bind (Function r)
+-- Bind Array
+
+arraymNum :: Array Number
 arraymNum = [2.44, 6.55]
+
+arrayint :: Array Int
 arrayint = [2,1,5,4,3,6,4,2]
 
 bind1 :: forall m a b. Bind m => m a -> (a -> m b) -> m b
@@ -38,7 +44,7 @@ main = do
   logShow $ fromNumber =<< (Just 45.00)
   logShow $ join1 $ Just (Just 8)
   logShow $ composeKleisli1 tail tail arrayint
-  -- logShow $ tail >=> tail >=> arrayint
+  -- logShow $ tail >=> tail arrayint
   logShow $ composeKleisliFlipped1 tail tail arrayint
   -- logShow $ arrayint <=< tail <=< tail
   logShow $ ifM1 (Just false) (Just 3) (Just 3)

@@ -7,6 +7,10 @@ import Control.Monad
 import Data.Maybe
 import Data.Int
 
+-- Instances
+-- Monad (Function r)
+-- Monad Array
+
 array :: Array Int
 array = [1,2,34,5,6,7,8,95,43,32,22,12]
 maybe = Just(Just 3)

@@ -12,11 +12,26 @@ import Data.Int (round)
 import Data.Int
 import Math (ceil)
 import Math
+import Data.Ordering
 import Data.Tuple
 import Debug.Trace
 
+-- Instances
+-- Foldable Array
+-- Foldable Maybe
+-- Foldable First
+-- Foldable Last
+-- Foldable Additive
+-- Foldable Dual
+-- Foldable Disj
+-- Foldable Conj
+-- Foldable Multiplicative
+
 add :: Number -> Int -> Int
 add n i = (round n) + i
+
+sum2 :: Number -> Int -> Number
+sum2 n i = n + toNumber i
 
 add1 :: Int -> Int -> Maybe Int
 add1 a b = Just(a + b)
@@ -27,6 +42,8 @@ add2 i = [Just (i+1)]
 sub a b = b - a
 mul a b = a * b
 div a b = a / b
+
+invertCompare a b = invert $ compare a b
 
 arraystr = ["a", "b", "c", "d", "e"]
 
@@ -42,6 +59,9 @@ arrayarr = [[1.3,7.3,94.5,0.6,3.5,44.3,3.3],[7.2,33.22,21.5,33.6,29.56,2.67],[21
 
 foldrDefault1 :: forall f a b. Foldable f => (a -> b -> b) -> b -> f a -> b
 foldrDefault1 a b c = foldrDefault a b c
+
+foldlDefault1 :: forall f a b. Foldable f => (b -> a -> b) -> b -> f a -> b
+foldlDefault1 f b array = foldlDefault f b array
 
 foldMapDefaultL1 :: forall f a m. Foldable f => Monoid m => (a -> m) -> f a -> m
 foldMapDefaultL1 a b = foldMapDefaultL a b
@@ -127,6 +147,7 @@ length1 a = length a
 main :: Effect Unit
 main = do
   logShow $ foldrDefault1 add 6 array
+  logShow $ foldlDefault1 sum2 9.6 arrayint
   logShow $ foldMapDefaultL1 add2 arrayint
   logShow $ foldMapDefaultR1 add2 arrayint
   logShow $ fold1 arraym1
@@ -149,6 +170,8 @@ main = do
   logShow $ find1 even1 arrayint
   logShow $ findMap1 fromNumber array
   logShow $ maximum1 array
+  logShow $ maximumBy1 invertCompare array
   logShow $ minimum1 array
+  logShow $ minimumBy1 invertCompare array
   logShow $ null array
   -- logShow $ length1 arrayint
