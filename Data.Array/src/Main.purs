@@ -19,7 +19,40 @@ import Data.Unfoldable
 import Data.Maybe
 import Data.String
 
+-- Alternative -> Instances
+-- Alternative Array
+
+-- Lazy -> Instances
+-- Lazy (a -> b)
+-- Lazy Unit
+
+-- NonEmptyArray
+-- Instances
+-- (Show a) => Show (NonEmptyArray a)
+-- (Eq a) => Eq (NonEmptyArray a)
+-- Eq1 NonEmptyArray
+-- (Ord a) => Ord (NonEmptyArray a)
+-- Ord1 NonEmptyArray
+-- Semigroup (NonEmptyArray a)
+-- Functor NonEmptyArray
+-- FunctorWithIndex Int NonEmptyArray
+-- Foldable NonEmptyArray
+-- FoldableWithIndex Int NonEmptyArray
+-- Foldable1 NonEmptyArray
+-- Unfoldable1 NonEmptyArray
+-- Traversable NonEmptyArray
+-- TraversableWithIndex Int NonEmptyArray
+-- Traversable1 NonEmptyArray
+-- Apply NonEmptyArray
+-- Applicative NonEmptyArray
+-- Bind NonEmptyArray
+-- Monad NonEmptyArray
+-- Alt NonEmptyArray
+
 invertCompare a b = invert $ compare a b
+
+array1 :: Array (Array Unit)
+array1 = [[unit],[unit,unit,unit],[unit,unit]] 
 
 add :: Number -> Number -> Number
 add a b = a + b
@@ -265,7 +298,7 @@ main = do
   logShow $ singleton1 "abc"
   logShow $ range1 90 4
   logShow $ replicate1 3 "abc"
-  -- logShow $ some1 array
+  -- logShow $ some1 array1
   -- logShow $ many1 array
   logShow $ null1 array
   logShow $ length1 array
@@ -334,3 +367,4 @@ main = do
   logShow $ 4.37 : array -- Operator alias for Data.Array.cons (right-associative / precedence 6)
   logShow $ array !! 2 -- Operator alias for Data.Array.index (left-associative / precedence 8)
   logShow $ array \\ array2 -- Operator alias for Data.Array.difference (non-associative / precedence 5)
+  logShow $ 3..19 -- Operator alias for Data.Array.NonEmpty.range (non-associative / precedence 8)
