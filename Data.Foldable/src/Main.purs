@@ -10,6 +10,7 @@ import Data.Maybe
 import Data.String
 import Data.Int (round)
 import Data.Int
+import Control.Plus
 import Math (ceil)
 import Math
 import Data.Ordering
@@ -38,6 +39,9 @@ add1 a b = Just(a + b)
 
 add2 :: Int -> Array (Maybe Int)
 add2 i = [Just (i+1)]
+
+arrays :: Int -> Array Int
+arrays i = [i+1,i+2,i+3]
 
 sub a b = b - a
 mul a b = a * b
@@ -84,8 +88,17 @@ for1 a b = for_ a b
 sequence :: forall a f m. Applicative m => Foldable f => f (m a) -> m Unit
 sequence a = sequence_ a
 
+oneOf1 :: forall f g a. Foldable f => Plus g => f (g a) -> g a
+oneOf1 f = oneOf f
+
+oneOfMap1 :: forall f g a b. Foldable f => Plus g => (a -> g b) -> f a -> g b
+oneOfMap1 f a = oneOfMap f a
+
 intercalate1 :: forall f m. Foldable f => Monoid m => m -> f m -> m
 intercalate1 a b = intercalate a b
+
+surroundMap1 :: forall f a m. Foldable f => Semigroup m => m -> (a -> m) -> f a -> m
+surroundMap1 m f array = surroundMap m f array
 
 surround1 :: forall f m. Foldable f => Semigroup m => m -> f m -> m
 surround1 a b = surround a b
@@ -155,7 +168,10 @@ main = do
   logShow $ traverse1 fromNumber array
   logShow $ for1 array fromNumber
   logShow $ sequence arraym
+  logShow $ oneOf1 arrayarr
+  logShow $ oneOfMap1 arrays arrayint
   logShow $ intercalate1 "," arraystr
+  logShow $ surroundMap1 "u" show array
   logShow $ surround1 "*" arraystr
   logShow $ and1 [true,false,true,true,false,false]
   logShow $ or1 [true,false,true,true,false,false]
@@ -174,4 +190,4 @@ main = do
   logShow $ minimum1 array
   logShow $ minimumBy1 invertCompare array
   logShow $ null array
-  -- logShow $ length1 arrayint
+  -- logShow $ length1 array

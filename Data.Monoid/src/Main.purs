@@ -13,6 +13,7 @@ import Data.Monoid
 -- Monoid (Array a)
 -- (RowToList row list, MonoidRecord list row row) => Monoid {  | row }
 
+arrayint :: Array Int
 arrayint = [1,2,3,4,5,6,7,8,9]
 
 power1 :: forall m. Monoid m => m -> Int -> m

@@ -51,8 +51,8 @@ import Data.String
 
 invertCompare a b = invert $ compare a b
 
-array1 :: Array (Array Unit)
-array1 = [[unit],[unit,unit,unit],[unit,unit]] 
+array1 :: Array Unit
+array1 = [unit,unit,unit,unit,unit,unit]
 
 add :: Number -> Number -> Number
 add a b = a + b
@@ -60,8 +60,20 @@ add a b = a + b
 add1 :: Int -> Int -> Maybe Int
 add1 a b = Just(a + b)
 
+add2 :: Int -> Int -> Int
+add2 i i2 = i+i2
+
+add3 :: Int -> Int
+add3 i = i+5
+
+greater :: Int -> Int -> Boolean
+greater i i1 = if i > i1 then true else false
+
 arrayint :: Array Int
 arrayint = [2,45,2,7678,34,22,34,344,21,42]
+
+arrayin :: Array Int
+arrayin = [3,6,5,3,2,667,45,3212,21]
 
 array :: Array Number
 array = [1.0,6.0,6.0,9.4,4.37,3.5,3.5,2.43]
@@ -80,6 +92,12 @@ arrayar = [[1,2,3,4,5], [10,20,30,40,50], [11,12,13,14,15], [90,80,70,60,50], [0
 
 arraym :: Array (Maybe Int)
 arraym = [Just 3, Just 6, Just 8, Just 9, Just 90, Just 67]
+
+maybeItself :: Int -> Maybe Int
+maybeItself i = if i `mod` 2 == 0 then (Just i) else (Just (i+1))
+
+maybeBoolean :: Int -> Maybe Boolean
+maybeBoolean i = if i `mod` 2 == 0 then (Just true) else (Just false)
 
 fromFoldable1 ::  forall f. Foldable f => f ~> Array
 fromFoldable1 f = fromFoldable f
@@ -294,7 +312,7 @@ unsafeIndex1 array i = unsafeIndex array i
 main :: Effect Unit
 main = do
   logShow $ fromFoldable1 $ Just array
-  -- logShow $ toUnfoldable $ fromFoldable1 array
+  -- logShow $ toUnfoldable arraym
   logShow $ singleton1 "abc"
   logShow $ range1 90 4
   logShow $ replicate1 3 "abc"
@@ -323,19 +341,19 @@ main = do
   logShow $ updateAtIndices1 [Tuple 1 "a"] arraystr
   logShow $ modifyAt1 4 toUpper arraystr
   logShow $ modifyAtIndices1 [1, 3] toUpper arraystr
-  -- logShow $ alterAt1
+  logShow $ alterAt1 8 maybeItself arrayint
   logShow $ reverse1 array
   logShow $ concatinate arrayar
   logShow $ concatMap1 singleton1 array
   logShow $ filter1 (contains (Pattern "b")) arraystr
   logShow $ partition1 (contains (Pattern "c")) arraystr
-  -- logShow $ filterA1
+  logShow $ filterA1 maybeBoolean arrayint
   logShow $ mapMaybe1 fromNumber array
   logShow $ catMaybes1 arraym
-  -- logShow $ mapWithIndex1
+  logShow $ mapWithIndex1 add2 arrayint
   logShow $ sortBy1 invertCompare array
   logShow $ sort1 array
-  -- logShow $ sortWith1
+  logShow $ sortWith1 add3 arrayint
   logShow $ slice1 1 4 array
   logShow $ take1 3 array
   logShow $ takeEnd1 3 array
@@ -344,20 +362,20 @@ main = do
   logShow $ dropWhile1 (contains (Pattern "d")) arraystr
   logShow $ span1 (contains (Pattern "c")) arraystr
   logShow $ group1 array
-  -- logShow $ groupBy1
+  logShow $ groupBy1 greater arrayint
   logShow $ nub1 array
   logShow $ nubEq1 array
   logShow $ nubBy1 invertCompare array
-  -- logShow $ nubByEq1
+  logShow $ nubByEq1 greater arrayint
   logShow $ union1 array array2
-  -- logShow $ unionBy1
+  logShow $ unionBy1 greater arrayint arrayin
   logShow $ delete1 3.5 array
-  -- logShow $ deleteBy1
+  logShow $ deleteBy1 greater 5 arrayint
   logShow $ difference1 array array2
   logShow $ intersect1 array array2
-  -- logShow $ intersectBy1
+  logShow $ intersectBy1 greater arrayint arrayin
   logShow $ zipWith1 add array array2
-  -- logShow $ zipWithA1
+  logShow $ zipWithA1 add1 arrayin arrayint
   logShow $ zip1 arraystr array
   logShow $ unzip1 arraytuple
   logShow $ foldM1 add1 5 arrayint

@@ -11,17 +11,22 @@ import Data.Maybe
 import Data.Ordering
 import Data.Unfoldable
 import Prelude
-
+import Data.Tuple
 import Data.List (group, null, foldM, singleton, range, length)
 import Effect (Effect)
 import Effect.Class.Console (logShow)
 
+add :: Int -> Int
 add b = 3 + b
+
+addi :: Int -> Int -> Int
+addi a b = a + b
 
 add1 :: Number -> Number -> Number
 add1 a b = a + b
 
-toNum a b = fromNumber $ add1 a b
+add4 :: Int -> Int -> Maybe Int
+add4 i i1 = Just (i+i1)
 
 itself :: Int -> Int
 itself a = a
@@ -29,12 +34,16 @@ itself a = a
 maybeItself :: Int -> Maybe Int
 maybeItself a = (Just a)
 
--- even' :: Int -> Maybe Boolean
--- even' i = if i `mod` 2 == 0 then (Just true) else (Just false)
+greater :: Int -> Int -> Boolean
+greater i i1 = if i > i1 then true else false
 
+listm :: List (Maybe Int)
 listm = ((Just 2):(Just 3):(Just 124):(Just 545):(Just 32):(Just 22):(Just 24):(Just 32):Nil)
 
 invertCompare a b = invert $ compare a b
+
+maybeBoolean :: Int -> Maybe Boolean
+maybeBoolean i = if i `mod` 2 == 0 then (Just true) else (Just false)
 
 array :: Array (List Int)
 array = [(1:3:2:3:Nil),(2:6:32:2:342:Nil),(4:34:435:4235:25:Nil)]
@@ -42,13 +51,19 @@ array = [(1:3:2:3:Nil),(2:6:32:2:342:Nil),(4:34:435:4235:25:Nil)]
 list :: List Int
 list = (6:6:3:3:7:7:2:2:5:5:Nil)
 
--- listlist :: List (List Int)
--- listlist = ((2:4:3:7:4:32:23:Nil):(1:2:34:Nil):(3:4:213:54:Nil))
+liststr :: List String
+liststr = ("a":"b":"c":"d":"e":Nil)
 
+listTuples :: List (Tuple String Int)
+listTuples = ((Tuple "a" 1):(Tuple "b" 2):(Tuple "c" 3):(Tuple "d" 4):(Tuple "e" 5):(Tuple "f" 6):Nil)
+
+listi :: Array Int
 listi = (4:4:6:7:546:43:Nil)
 
+listn :: List Number
 listn = (2.00:2.3:34.44:4.3:343.3:3.3:Nil)
 
+listl :: List (List Int)
 listl = ((3:2:4:4:45:3:Nil):(2:34:45:45:3:45:43:Nil):(1:2:3:32:34:45:54:Nil):Nil)
 
 toUnfoldable1 :: forall f. Unfoldable f => List ~> f
@@ -225,8 +240,20 @@ difference1 list listi = difference list listi
 intersect1 :: forall a. Eq a => List a -> List a -> List a
 intersect1 list listi = intersect list listi
 
+intersectBy1 :: forall a. (a -> a -> Boolean) -> List a -> List a -> List a
+intersectBy1 b list1 list2 = intersectBy b list1 list2
 
+zipWith1 :: forall a b c. (a -> b -> c) -> List a -> List b -> List c
+zipWith1 f list1 list2 = zipWith f list1 list2
 
+zipWithA1 :: forall m a b c. Applicative m => (a -> b -> m c) -> List a -> List b -> m (List c)
+zipWithA1 f list1 list2 = zipWithA f list1 list2
+
+zip1 :: forall a b. List a -> List b -> List (Tuple a b)
+zip1 list1 list2 = zip list1 list2
+
+unzip1 :: forall a b. List (Tuple a b) -> Tuple (List a) (List b)
+unzip1 list = unzip list
 
 transpose1 :: forall a. List (List a) -> List (List a)
 transpose1 list = transpose list
@@ -269,10 +296,10 @@ main = do
   logShow $ concat1 listl
   logShow $ concatMap1 singleton list
   logShow $ filter1 odd list
-  -- logShow $ filterM1 (const [true, false])
+  logShow $ filterM1 maybeBoolean list
   logShow $ mapMaybe1 fromNumber listn
   logShow $ catMaybes1 listm
-  -- logShow $ mapWithIndex1 drop list
+  logShow $ mapWithIndex1 addi list
   logShow $ sort1 list
   logShow $ sortBy1 invertCompare list
   logShow $ stripPrefix1 (Pattern (6:Nil)) list
@@ -284,20 +311,24 @@ main = do
   logShow $ span1 odd list
   logShow $ group1 list
   logShow $ group'1 list
-  -- logShow $ groupBy1
+  logShow $ groupBy1 greater list
   logShow $ partition1 even list
   logShow $ nub1 list
-  -- logShow $ nubBy1
+  logShow $ nubBy1 greater list
   logShow $ union1 list listi
-  -- logShow $ unionBy1
+  logShow $ unionBy1 greater list listi
   logShow $ delete1 4 list
-  -- logShow $ deleteBy1
+  logShow $ deleteBy1 greater 5 list
   logShow $ difference1 list listi
   logShow $ intersect1 list listi
-  logShow $ "--------------------------"
-
+  logShow $ intersectBy1 greater list listi
+  logShow $ zipWith1 addi list listi
+  logShow $ zipWithA1 add4 list listi
+  logShow $ zip1 liststr listi
+  logShow $ unzip1 listTuples
   logShow $ transpose1 listl
-  -- logShow $ foldM1 add1 5 listi
+  logShow $ foldM1 add4 5 listi
+  
   logShow $ 3..30 -- Operator alias for Data.List.range (non-associative / precedence 8)
   logShow $ list !! 5 -- Operator alias for Data.List.index (left-associative / precedence 8)
   logShow $ list \\ listi -- Operator alias for Data.List.difference (non-associative / precedence 5)

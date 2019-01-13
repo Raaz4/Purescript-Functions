@@ -22,9 +22,9 @@ fromMaybe1 :: forall f a. Unfoldable f => Maybe a -> f a
 fromMaybe1 m = fromMaybe m
 
 
-main :: Effect _
+main :: Effect Unit
 main = do
-  -- logShow $ replicate1 4 "this"
+  -- logShow $ replicate 4 "this"
   -- logShow $ replicateA1 3 [5, 7, 9]
   -- logShow $ none1
   -- logShow $ fromMaybe1 $ Just 8
