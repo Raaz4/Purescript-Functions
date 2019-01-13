@@ -328,7 +328,7 @@ main = do
   logShow $ unzip1 listTuples
   logShow $ transpose1 listl
   logShow $ foldM1 add4 5 listi
-  
+  logShow $ "------------ Operators -------------"
   logShow $ 3..30 -- Operator alias for Data.List.range (non-associative / precedence 8)
   logShow $ list !! 5 -- Operator alias for Data.List.index (left-associative / precedence 8)
   logShow $ list \\ listi -- Operator alias for Data.List.difference (non-associative / precedence 5)

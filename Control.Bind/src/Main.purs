@@ -39,12 +39,14 @@ ifM1 mb ma m = ifM mb ma m
 main :: Effect Unit
 main = do
   logShow $ bind1 (Just 90.00) fromNumber
-  logShow $ (Just 9.0) >>= fromNumber
   logShow $ bindFlipped1 fromNumber (Just 89.00)
-  logShow $ fromNumber =<< (Just 45.00)
   logShow $ join1 $ Just (Just 8)
   logShow $ composeKleisli1 tail tail arrayint
-  -- logShow $ tail >=> tail arrayint
   logShow $ composeKleisliFlipped1 tail tail arrayint
-  -- logShow $ arrayint <=< tail <=< tail
   logShow $ ifM1 (Just false) (Just 3) (Just 3)
+  logShow $ "------------ Operators -------------"
+  logShow $ (Just 9.0) >>= fromNumber -- Operator alias for Control.Bind.bind (left-associative / precedence 1)
+  logShow $ fromNumber =<< (Just 45.00) -- Operator alias for Control.Bind.bindFlipped (right-associative / precedence 1)
+  -- logShow $ tail >=> tail arrayint -- Operator alias for Control.Bind.composeKleisli (right-associative / precedence 1)
+  -- logShow $ arrayint <=< tail <=< tail -- Operator alias for Control.Bind.composeKleisliFlipped (right-associative / precedence 1)
+

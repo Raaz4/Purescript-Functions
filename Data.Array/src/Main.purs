@@ -381,7 +381,7 @@ main = do
   logShow $ foldM1 add1 5 arrayint
   logShow $ foldRecM1 add1 4 arrayint
   logShow $ unsafePartial $ unsafeIndex1 arrayint 4
-
+  logShow $ "------------ Operators -------------"
   logShow $ 4.37 : array -- Operator alias for Data.Array.cons (right-associative / precedence 6)
   logShow $ array !! 2 -- Operator alias for Data.Array.index (left-associative / precedence 8)
   logShow $ array \\ array2 -- Operator alias for Data.Array.difference (non-associative / precedence 5)

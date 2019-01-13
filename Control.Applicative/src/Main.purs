@@ -41,7 +41,7 @@ main = do
   logShow $ when1 false $ Just unit
 
   --  Operators
-
+  logShow $ "------------ Operators -------------"
   logShow $ quot <$> arrayint <*> arrayint
   logShow $ [ad, sub] <*> arrayint -- Operator alias for Control.Apply.apply (left-associative / precedence 4)
   logShow $ arrayint <* [ad, sub] -- Operator alias for Control.Apply.applyFirst (left-associative / precedence 4)
