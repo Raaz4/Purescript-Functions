@@ -4,9 +4,7 @@ var Control_Bind = require("../Control.Bind/index.js");
 var Data_Function = require("../Data.Function/index.js");
 var Data_Show = require("../Data.Show/index.js");
 var Effect = require("../Effect/index.js");
-var Effect_Class = require("../Effect.Class/index.js");
-var Effect_Class_Console = require("../Effect.Class.Console/index.js");
-var Partial = require("../Partial/index.js");
+var Effect_Console = require("../Effect.Console/index.js");
 var Partial_Unsafe = require("../Partial.Unsafe/index.js");
 var Prelude = require("../Prelude/index.js");
 var unsafePartialBecause1 = function (s) {
@@ -23,13 +21,13 @@ var unsafeCrashWith1 = function (s) {
     return Partial_Unsafe.unsafeCrashWith(s);
 };
 var main = function __do() {
-    Effect_Class_Console.logShow(Effect_Class.monadEffectEffect)(Data_Show.showInt)(unsafePartial1(function (dictPartial) {
-        return 3;
+    Effect_Console.logShow(Data_Show.showInt)(unsafePartial1(function (dictPartial) {
+        return 5;
     }))();
-    Effect_Class_Console.logShow(Effect_Class.monadEffectEffect)(Data_Show.showInt)(unsafePartialBecause1("string")(function (dictPartial) {
-        return 4;
+    Effect_Console.logShow(Data_Show.showInt)(unsafePartialBecause1("string")(function (dictPartial) {
+        return 7;
     }))();
-    return Effect_Class_Console.logShow(Effect_Class.monadEffectEffect)(Data_Show.showString)(unsafeCrashWith1("error"))();
+    return Effect_Console.logShow(Data_Show.showString)(unsafeCrashWith1("error"))();
 };
 module.exports = {
     unsafePartial1: unsafePartial1,
