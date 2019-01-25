@@ -66,9 +66,9 @@ remainder1 n n1 = remainder n n1
 main :: Effect Unit
 main = do
   logShow $ abs1 80.90
-  logShow $ acos1 67.00
-  logShow $ asin1 45.00
-  logShow $ atan1 45.00
+  logShow $ acos1 1.00
+  logShow $ asin1 0.50
+  logShow $ atan1 0.60
   logShow $ atan21 45.00 45.00
   logShow $ ceil1 80.90
   logShow $ cos1 5.77

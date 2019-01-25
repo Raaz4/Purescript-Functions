@@ -4,7 +4,8 @@ import Prelude
 import Effect (Effect)
 import Effect.Class.Console (logShow)
 import Data.Array
-import Data.Array (singleton, range, replicate, null, length, uncons, take, drop, dropWhile, foldM)
+import Data.List
+import Data.Array (singleton, range, replicate, null, length, uncons, take, drop, dropWhile, foldM, toUnfoldable)
 import Data.Foldable
 import Control.Lazy
 import Control.Monad.Rec.Class
@@ -18,6 +19,7 @@ import Control.Alternative
 import Data.Unfoldable
 import Data.Maybe
 import Data.String
+import Data.String (Pattern(..))
 
 -- Alternative -> Instances
 -- Alternative Array
@@ -312,7 +314,7 @@ unsafeIndex1 array i = unsafeIndex array i
 main :: Effect Unit
 main = do
   logShow $ fromFoldable1 $ Just array
-  -- logShow $ toUnfoldable arraym
+  logShow $ toUnfoldable array :: List _
   logShow $ singleton1 "abc"
   logShow $ range1 90 4
   logShow $ replicate1 3 "abc"

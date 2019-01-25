@@ -4,6 +4,7 @@ import Prelude
 import Effect (Effect)
 import Effect.Class.Console (logShow)
 import Data.Traversable
+import Data.Traversable.Accum
 import Data.Maybe
 import Data.Maybe.Last
 import Data.Tuple
@@ -20,6 +21,9 @@ import Data.Int
 -- Traversable Conj
 -- Traversable Disj
 -- Traversable Multiplicative
+
+-- accum :: forall s a. s -> a -> Accum s a
+-- accum s a = Accum s a
 
 first :: forall a b. b -> a -> b
 first b a = b
@@ -62,6 +66,7 @@ main = do
   logShow $ traverseDefault1 fromNumber arraynum
   logShow $ sequenceDefault1 arraym
   logShow $ for1 arraynum fromNumber
-  -- logShow $ Accum 8 3
+  logShow $ mapAccumL1 (\s a -> {accum: s+1, value: s+a}) 5 arrayint
+  logShow $ mapAccumR1 (\s a -> {accum: s, value: a}) 6 arrayint
   logShow $ scanl1 first 4 arrayint
   logShow $ scanr1 second 8 arrayint

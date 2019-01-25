@@ -2,7 +2,7 @@ module Main where
 
 import Prelude
 import Effect (Effect)
-import Data.Either (Either)
+import Data.Either (Either(..))
 import Data.Either
 import Control.Alt
 import Math
@@ -49,15 +49,25 @@ isRight1 a = isRight a
 fromLeft1 :: forall a b. Partial => Either a b -> a
 fromLeft1 a = fromLeft a
 
+fromRight1 :: forall a b. Partial => Either a b -> b
+fromRight1 a = fromRight a
+
 note1 :: forall a b. a -> Maybe b -> Either a b
 note1 a b = note a b
+
+note' :: forall a b. (Unit -> a) -> Maybe b -> Either a b
+note' unit m = note' unit m
 
 hush1 :: forall a b. Either a b -> Maybe b
 hush1 a = hush a
 
-a = Either 12.33 6.33
-
 main :: Effect Unit
 main = do
-  logShow $ either1 trunc floor a
-  -- logShow $ fromLeft1 $ Either 9 4
+  logShow $ either1 trunc floor (Left 3.4)
+  logShow $ choose1 (Just 10) (Just 9)
+  logShow $ isLeft1 (Left 9)
+  logShow $ isRight1 (Right 3)
+  -- logShow $ fromLeft1 (Left 9)
+  -- logShow $ fromRight1 (Right 5)
+  logShow $ note1 2 (Just 6)
+  -- logShow $ note' 

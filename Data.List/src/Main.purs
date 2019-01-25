@@ -57,7 +57,7 @@ liststr = ("a":"b":"c":"d":"e":Nil)
 listTuples :: List (Tuple String Int)
 listTuples = ((Tuple "a" 1):(Tuple "b" 2):(Tuple "c" 3):(Tuple "d" 4):(Tuple "e" 5):(Tuple "f" 6):Nil)
 
-listi :: Array Int
+listi :: List Int
 listi = (4:4:6:7:546:43:Nil)
 
 listn :: List Number
@@ -263,7 +263,7 @@ foldM1 m a list = foldM m a list
 
 main :: Effect Unit
 main = do
-  -- logShow $ toUnfoldable1 list
+  logShow $ toUnfoldable1 list :: List _
   logShow $ fromFoldable1 list
   logShow $ singleton1 4
   logShow $ range1 3 8

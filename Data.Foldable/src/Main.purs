@@ -49,16 +49,25 @@ div a b = a / b
 
 invertCompare a b = invert $ compare a b
 
+arraystr :: Array String
 arraystr = ["a", "b", "c", "d", "e"]
 
 even1 :: Int -> Boolean
 even1 e = even e
 
+arraym1 :: Array (Array (Maybe Int))
 arraym1 = [[(Just 4)],[(Just 6),(Just 67),(Just 98)],[(Just 4),(Just 22),(Just 48),(Just 49)]]
 
+arraym :: Array (Maybe Int)
 arraym = [(Just 4),(Just 6),(Just 67),(Just 98),(Just 4),(Just 22),(Just 48),(Just 49)]
+
+array :: Array Number
 array = [1.55, 7.8, 9.9, 6.8, 9.9, 0.3, 99.0]
+
+arrayint :: Array Int
 arrayint = [1,23,4,5,6,7,8,9,8,8,80,54,33]
+
+arrayarr :: Array (Array Number)
 arrayarr = [[1.3,7.3,94.5,0.6,3.5,44.3,3.3],[7.2,33.22,21.5,33.6,29.56,2.67],[21.54,43.4,44.33,67.55,67.76,76.00]]
 
 foldrDefault1 :: forall f a b. Foldable f => (a -> b -> b) -> b -> f a -> b
@@ -190,4 +199,4 @@ main = do
   logShow $ minimum1 array
   logShow $ minimumBy1 invertCompare array
   logShow $ null array
-  -- logShow $ length1 array
+  logShow $ length1 arrayint :: Int
