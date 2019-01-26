@@ -17,4 +17,4 @@ rightDiv1 a b = rightDiv a b
 main :: Effect Unit
 main = do
   logShow $ leftDiv1 6.7 3.22
-  logShow $ rightDiv1 9.02 6.44
+  logShow $ rightDiv1 6.7 3.22
