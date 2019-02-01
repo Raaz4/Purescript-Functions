@@ -35,9 +35,11 @@ unlessM1 mB mU = unlessM mB mU
 
 main :: Effect Unit
 main = do
-  logShow $ join1 maybe
+  logShow $ join1 (Just (Just 5))
   logShow $ void1 array
   logShow $ liftM11 ceil $ Just 4.9
   logShow $ ap1 (Just ceil) (Just 5.6)
+  logShow $ whenM1 (Just false) (Just unit)
   logShow $ whenM1 (Just true) (Just unit)
   logShow $ unlessM1 (Just true) (Just unit)
+  logShow $ unlessM1 (Just false) (Just unit)

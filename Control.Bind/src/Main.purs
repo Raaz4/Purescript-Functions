@@ -43,7 +43,8 @@ main = do
   logShow $ join1 $ Just (Just 8)
   logShow $ composeKleisli1 tail tail arrayint
   logShow $ composeKleisliFlipped1 tail tail arrayint
-  logShow $ ifM1 (Just false) (Just 3) (Just 3)
+  logShow $ ifM1 (Just true) (Just 9) (Just 100)
+  logShow $ ifM1 (Just false) (Just 9) (Just 100)
   logShow $ "------------ Operators -------------"
   logShow $ (Just 9.0) >>= fromNumber -- Operator alias for Control.Bind.bind (left-associative / precedence 1)
   logShow $ fromNumber =<< (Just 45.00) -- Operator alias for Control.Bind.bindFlipped (right-associative / precedence 1)

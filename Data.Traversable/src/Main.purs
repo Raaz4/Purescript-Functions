@@ -38,7 +38,7 @@ arraynum :: Array Number
 arraynum = [1.44,3.22,43.22,43.22,5.43,33.32]
 
 arraym :: Array (Maybe Int)
-arraym = [Just 4, Just 5, Just 90, Just 45, Just 8]
+arraym = [(Just 4), (Just 5), (Just 90), (Just 45), (Just 8)]
 
 traverseDefault1 :: forall t a b m. Traversable t => Applicative m => (a -> m b) -> t a -> m (t b)
 traverseDefault1 m t = traverseDefault m t

@@ -70,6 +70,6 @@ main = do
   logShow $ isRight1 (Right 3)
   logShow $ unsafePartial $ fromLeft1 (Left 9)
   logShow $ unsafePartial $ fromRight1 (Right 5)
-  logShow $ note1 2 (Just 6)
+  logShow $ note1 2 (Just 10)
   -- logShow $ note' (\x -> x+x) (Just 8)
-  logShow $ hush1 (Left 8) :: Maybe Int
+  logShow $ hush1 (Right 8) :: Maybe Int
