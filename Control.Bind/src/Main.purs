@@ -48,6 +48,8 @@ main = do
   logShow $ "------------ Operators -------------"
   logShow $ (Just 9.0) >>= fromNumber -- Operator alias for Control.Bind.bind (left-associative / precedence 1)
   logShow $ fromNumber =<< (Just 45.00) -- Operator alias for Control.Bind.bindFlipped (right-associative / precedence 1)
-  -- logShow $ tail tail >=> arrayint -- Operator alias for Control.Bind.composeKleisli (right-associative / precedence 1)
-  -- logShow $ arrayint <=< tail <=< tail -- Operator alias for Control.Bind.composeKleisliFlipped (right-associative / precedence 1)
+  logShow $ (tail >=> tail >=> head) arrayint -- Operator alias for Control.Bind.composeKleisli (right-associative / precedence 1)
+  logShow $ (>=>) (\x -> [x+1,x+2,x+3]) (\y -> [y-1,y-2,y-3]) 5
+  logShow $ (head <=< tail <=< tail) arrayint -- Operator alias for Control.Bind.composeKleisliFlipped (right-associative / precedence 1)
+  logShow $ (<=<) (\x -> [x+1,x+2,x+3]) (\y -> [y-1,y-2,y-3]) 5
 
