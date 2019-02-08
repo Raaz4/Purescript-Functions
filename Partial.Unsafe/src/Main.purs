@@ -2,8 +2,8 @@ module Main where
 
 import Prelude
 import Effect (Effect)
-import Partial.Unsafe
-import Effect.Console (logShow)
+import Partial.Unsafe (unsafePartial, unsafePartialBecause, unsafeCrashWith)
+import Effect..Class.Console (logShow)
 
 unsafePartial1 :: forall a. (Partial => a) -> a
 unsafePartial1 p = unsafePartial p

@@ -1,10 +1,10 @@
 module Main where
 
-import Prelude
+import Prelude (discard, ($), Unit)
 import Effect (Effect)
 import Effect.Class.Console (logShow) 
-import Data.Int
-import Data.Maybe
+import Data.Int (Parity, Radix, base36, binary, ceil, decimal, even, floor, fromNumber, fromString, fromStringAs, hexadecimal, octal, odd, parity, pow, quot, radix, rem, round, toNumber, toStringAs)
+import Data.Maybe (Maybe)
 
 fromNumber1 :: Number -> Maybe Int
 fromNumber1 f = fromNumber f
@@ -66,7 +66,7 @@ rem1 q d = rem q d
 pow1 :: Int -> Int -> Int
 pow1 p r = pow p r
 
-main :: Effect _
+main :: Effect Unit
 main = do
        logShow $ fromNumber1 11.0
        logShow $ ceil1 9.332

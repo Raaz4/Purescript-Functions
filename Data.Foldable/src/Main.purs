@@ -1,21 +1,13 @@
 module Main where
 
-import Prelude
+import Prelude (class Applicative, class Eq, class HeytingAlgebra, class Monad, class Monoid, class Ord, class Semigroup, class Semiring, Ordering, Unit, compare, discard, not, show, ($), (+))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Foldable (null,length)
-import Data.Foldable
-import Math (max) as M
-import Data.Maybe
-import Data.String
-import Data.Int (round)
-import Data.Int
-import Control.Plus
-import Math (ceil)
-import Math
-import Data.Ordering
-import Data.Tuple
-import Debug.Trace
+import Data.Foldable (class Foldable, all, and, any, elem, find, findMap, fold, foldM, foldMapDefaultL, foldMapDefaultR, foldlDefault, foldrDefault, for_, indexl, indexr, intercalate, length, maximum, maximumBy, minimum, minimumBy, notElem, null, oneOf, oneOfMap, or, product, sequence_, sum, surround, surroundMap, traverse_)
+import Data.Maybe (Maybe(..))
+import Data.Int (even, fromNumber, round, toNumber)
+import Control.Plus (class Plus)
+import Data.Ordering (invert)
 
 -- Instances
 -- Foldable Array
@@ -43,10 +35,7 @@ add2 i = [Just (i+1)]
 arrays :: Int -> Array Int
 arrays i = [i+1,i+2,i+3]
 
-sub a b = b - a
-mul a b = a * b
-div a b = a / b
-
+invertCompare :: forall a. Ord a => a -> a -> Ordering
 invertCompare a b = invert $ compare a b
 
 arraystr :: Array String

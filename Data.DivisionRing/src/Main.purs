@@ -3,7 +3,7 @@ module Main where
 import Prelude
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.DivisionRing
+import Data.DivisionRing (leftDiv, rightDiv)
 
 -- Instances
 -- DivisionRing Number

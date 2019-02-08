@@ -3,22 +3,25 @@ module Main where
 import Prelude
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Control.Applicative
-import Math
-import Data.Maybe
+import Control.Applicative (apply, liftA1, unless, when)
+import Math (ceil)
+import Data.Int (quot)
+import Data.Maybe (Maybe (..))
 
 -- Instances
 -- Applicative (Function r)
 -- Applicative Array
 
-quot :: Int -> Int -> Int
-quot a b = a / b
-
+ad :: Int -> Int
 ad a = a + 5
+
+sub :: Int -> Int
 sub a = 5 - a
 
+arraynum :: Array Number
 arraynum =  [1.2,43.43,3.42,3.42,42.2,23.23]
 
+arrayint :: Array Int
 arrayint = [1,2,5,4,6,7,4,9,8,5,3,8]
 
 apply1 :: forall f a b. Apply f => f (a -> b) -> f a -> f b

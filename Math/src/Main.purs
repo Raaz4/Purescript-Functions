@@ -1,10 +1,9 @@
 module Main where
 
-import Prelude
+import Prelude (Unit, discard, ($))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Math (min, max)
-import Math
+import Math (Radians, abs, acos, asin, atan, atan2, ceil, cos, e, exp, floor, ln10, ln2, log, log10e, log2e, max, min, pi, pow, remainder, round, sin, sqrt, sqrt1_2, sqrt2, tan, tau, trunc, (%))
 
 abs1 :: Number -> Number
 abs1 a = abs a

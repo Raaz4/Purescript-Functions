@@ -1,9 +1,9 @@
 module Main where
 
-import Prelude
+import Prelude (class Ord, class Ring, Ordering, Unit, between, clamp, comparing, discard, max, min, ($), (<), (<=), (>), (>=))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Ord
+import Data.Ord (abs, greaterThan, greaterThanOrEq, lessThan, lessThanOrEq, signum)
 
 -- Instances
 -- Ord Boolean
@@ -53,17 +53,9 @@ signum1 a = signum a
 main :: Effect Unit
 main = do
   logShow $ lessThan1 3 4
-  logShow $ lessThan1 4 3
-  logShow $ lessThan1 3 3
   logShow $ lessThanOrEq1 4 4
-  logShow $ lessThanOrEq1 4 3
-  logShow $ lessThanOrEq1 3 4
   logShow $ greaterThan1 3 4
-  logShow $ greaterThan1 4 3
-  logShow $ greaterThan1 3 3
   logShow $ greaterThanOrEq1 3 4
-  logShow $ greaterThanOrEq1 4 3
-  logShow $ greaterThanOrEq1 3 3
   -- logShow $ comparing1 (\a -> a > 4)
   logShow $ min1 3 4
   logShow $ max1 4 3
@@ -71,5 +63,12 @@ main = do
   logShow $ between1 1 4 3
   logShow $ abs 4
   logShow $ signum 4
+  logShow $ "------------ Operators -------------"
+  logShow $ 4 < 8 -- Operator alias for Data.Ord.lessThan (left-associative / precedence 4)
+  logShow $ 5 <= 5 -- Operator alias for Data.Ord.lessThanOrEq (left-associative / precedence 4)
+  logShow $ 7 > 0 -- Operator alias for Data.Ord.greaterThan (left-associative / precedence 4)
+  logShow $ 6 >= 6 -- Operator alias for Data.Ord.greaterThanOrEq (left-associative / precedence 4)
+
+
 
 

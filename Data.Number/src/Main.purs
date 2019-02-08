@@ -1,11 +1,10 @@
 module Main where
 
-import Prelude
+import Prelude (Unit, discard, ($))
 import Effect (Effect)
-import Data.Number
+import Data.Number (fromString, infinity, isFinite, isNaN, nan)
 import Effect.Class.Console (logShow)
-import Data.Maybe
-
+import Data.Maybe (Maybe)
 fromString1 :: String -> Maybe Number
 fromString1 s = fromString s
 

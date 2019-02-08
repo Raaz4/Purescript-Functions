@@ -1,12 +1,11 @@
 module Main where
 
-import Prelude
+import Prelude (Unit, discard, ($), (+))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Maybe
-import Control.Alternative
+import Data.Maybe (Maybe(..), fromJust, fromMaybe, fromMaybe', isJust, isNothing, maybe, maybe', optional)
+import Control.Alternative (class Alternative)
 import Partial.Unsafe (unsafePartial)
-import Math
 
 -- Instances
 -- Functor Maybe

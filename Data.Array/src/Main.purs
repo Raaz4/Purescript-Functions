@@ -1,25 +1,22 @@
 module Main where
 
-import Prelude
+import Prelude (class Applicative, class Eq, class Monad, class Ord, type (~>), Ordering, Unit, compare, discard, mod, unit, ($), (+), (==), (>))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Array
-import Data.List
-import Data.Array (singleton, range, replicate, null, length, uncons, take, drop, dropWhile, foldM, toUnfoldable)
-import Data.Foldable
-import Control.Lazy
-import Control.Monad.Rec.Class
-import Data.Array.NonEmpty.Internal
-import Data.Int
+import Data.Array (alterAt, catMaybes, concat, concatMap, cons, delete, deleteAt, deleteBy, difference, drop, dropEnd, dropWhile, elemIndex, elemLastIndex, filter, filterA, findIndex, findLastIndex, foldM, foldRecM, fromFoldable, group, groupBy, head, index, init, insert, insertAt, insertBy, intersect, intersectBy, last, length, many, mapMaybe, mapWithIndex, modifyAt, modifyAtIndices, nub, nubBy, nubByEq, nubEq, null, partition, range, replicate, reverse, singleton, slice, snoc, some, sort, sortBy, sortWith, span, tail, take, takeEnd, toUnfoldable, uncons, union, unionBy, unsafeIndex, unsnoc, unzip, updateAt, updateAtIndices, zip, zipWith, zipWithA, (!!), (..), (:), (\\))
+import Data.List (List)
+import Data.Foldable (class Foldable)
+import Control.Lazy (class Lazy)
+import Control.Monad.Rec.Class (class MonadRec)
+import Data.Array.NonEmpty.Internal (NonEmptyArray)
+import Data.Int (fromNumber)
 import Partial.Unsafe (unsafePartial)
--- import Prim.Partial
-import Data.Tuple
-import Data.Ordering
-import Control.Alternative
-import Data.Unfoldable
-import Data.Maybe
-import Data.String
-import Data.String (Pattern(..))
+import Data.Tuple (Tuple(..))
+import Data.Ordering (invert)
+import Control.Alternative (class Alternative)
+import Data.Unfoldable (class Unfoldable)
+import Data.Maybe (Maybe(..))
+import Data.String (Pattern(..), contains, toUpper)
 
 -- Alternative -> Instances
 -- Alternative Array
@@ -51,6 +48,7 @@ import Data.String (Pattern(..))
 -- Monad NonEmptyArray
 -- Alt NonEmptyArray
 
+invertCompare :: forall a. Ord a => a -> a -> Ordering
 invertCompare a b = invert $ compare a b
 
 array1 :: Array Unit

@@ -1,10 +1,10 @@
 module Main where
 
-import Prelude
+import Prelude (Ordering, Unit, discard, ($))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.String
-import Data.Maybe
+import Data.String (CodePoint, Pattern(..), Replacement(..), codePointAt, codePointFromChar, contains, countPrefix, drop, dropWhile, fromCodePointArray, indexOf, indexOf', joinWith, lastIndexOf, lastIndexOf', length, localeCompare, null, replace, replaceAll, singleton, split, splitAt, stripPrefix, stripSuffix, take, takeWhile, toCodePointArray, toLower, toUpper, trim, uncons)
+import Data.Maybe (Maybe)
 
 -- array :: Array CodePoint
 -- array = [CodePoint 0x62, CodePoint 0x20, CodePoint 0x1D400, CodePoint 0x1D400]

@@ -1,12 +1,12 @@
 module Main where
 
-import Prelude
+import Prelude (class Bind, Unit, bind, discard, ifM, join, ($), (+), (-), (<=<), (=<<), (>=>), (>>=))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Control.Bind
-import Data.Int
-import Data.Maybe
-import Data.Array
+import Control.Bind (bindFlipped, composeKleisli, composeKleisliFlipped)
+import Data.Int (fromNumber)
+import Data.Maybe (Maybe (..))
+import Data.Array (head, tail)
 
 -- Instances
 -- Bind (Function r)

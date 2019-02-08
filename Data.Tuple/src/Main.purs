@@ -1,12 +1,13 @@
 module Main where
 
-import Prelude
-import Data.Tuple
+import Prelude (class Eq, Unit, discard, ($), (+))
+import Data.Tuple (Tuple(..), curry, fst, lookup, snd, swap, uncurry)
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Maybe
-import Data.Foldable
+import Data.Maybe (Maybe)
+import Data.Foldable (class Foldable)
 
+add :: Int -> Int -> Int
 add a b = a + b
 
 first :: forall a b. Tuple a b -> a

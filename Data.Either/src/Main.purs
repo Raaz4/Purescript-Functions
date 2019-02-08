@@ -1,13 +1,12 @@
 module Main where
 
-import Prelude
+import Prelude (Unit, discard, ($))
 import Effect (Effect)
-import Data.Either (Either(..))
-import Data.Either
-import Partial.Unsafe
-import Control.Alt
-import Math
-import Data.Maybe
+import Data.Either (Either(..), either, choose, isLeft, isRight, fromLeft, fromRight, note, note', hush)
+import Partial.Unsafe (unsafePartial)
+import Control.Alt (class Alt)
+import Math (floor, trunc)
+import Data.Maybe (Maybe(..))
 import Effect.Class.Console (logShow)
 
 -- Instances
@@ -56,8 +55,8 @@ fromRight1 a = fromRight a
 note1 :: forall a b. a -> Maybe b -> Either a b
 note1 a b = note a b
 
-note' :: forall a b. (Unit -> a) -> Maybe b -> Either a b
-note' unit m = note' unit m
+note'1 :: forall a b. (Unit -> a) -> Maybe b -> Either a b
+note'1 unit m = note' unit m
 
 hush1 :: forall a b. Either a b -> Maybe b
 hush1 a = hush a

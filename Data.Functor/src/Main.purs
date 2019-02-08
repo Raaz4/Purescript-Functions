@@ -1,15 +1,17 @@
 module Main where
 
-import Prelude
+import Prelude (class Functor, Unit, discard, flap, void, ($), (+), (-))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Functor
-
+import Data.Functor (mapFlipped, voidLeft, voidRight)
 -- Instances
 -- Functor (Function r)
 -- Functor Array
 
+add :: Int -> Int
 add a = a + 6
+
+array :: Array Int
 array = [1,2,5,4,68,54,3,2,2,3]
 
 mapFlipped1 :: forall f a b. Functor f => f a -> (a -> b) -> f b

@@ -1,14 +1,12 @@
 module Main where
 
-import Prelude
+import Prelude (class Applicative, Unit, discard, ($))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Unfoldable (fromMaybe)
-import Data.Unfoldable
-import Data.Maybe
-import Data.List
-import Data.Traversable
-import Data.Tuple
+import Data.Unfoldable (class Unfoldable, fromMaybe, none, replicate, replicateA)
+import Data.Maybe (Maybe(..))
+import Data.List (List)
+import Data.Traversable (class Traversable)
 
 replicate1 :: forall f a. Unfoldable f => Int -> a -> f a
 replicate1 a b = replicate a b

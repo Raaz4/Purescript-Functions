@@ -1,11 +1,10 @@
 module Main where
 
-import Prelude
+import Prelude (class Bind, class Functor, class Monad, Unit, ap, discard, join, liftM1, unit, unlessM, void, whenM, ($))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Control.Monad
-import Data.Maybe
-import Data.Int
+import Data.Maybe (Maybe (..))
+import Data.Int (ceil)
 
 -- Instances
 -- Monad (Function r)
@@ -13,6 +12,8 @@ import Data.Int
 
 array :: Array Int
 array = [1,2,34,5,6,7,8,95,43,32,22,12]
+
+maybe :: Maybe (Maybe Int)
 maybe = Just(Just 3)
 
 join1 :: forall a m. Bind m => m (m a) -> m a

@@ -1,17 +1,17 @@
 module Main where
 
-import Control.Alternative
-import Control.Lazy
-import Control.Monad.Rec.Class
-import Data.Foldable
-import Data.Int
-import Data.List
-import Data.List.Types
-import Data.Maybe
-import Data.Ordering
-import Data.Unfoldable
-import Prelude
-import Data.Tuple
+import Control.Alternative (class Alternative)
+import Control.Lazy (class Lazy)
+import Control.Monad.Rec.Class (class MonadRec)
+import Data.Foldable (class Foldable)
+import Data.Int (even, fromNumber, odd)
+import Data.List (Pattern(..), List(..), (:), alterAt, catMaybes, concat, concatMap, delete, deleteAt, deleteBy, difference, dropEnd, elemIndex, elemLastIndex, filter, filterM, findIndex, findLastIndex, foldM, fromFoldable, group, group', groupBy, head, index, init, insert, insertAt, insertBy, intersect, intersectBy, last, length, many, manyRec, mapMaybe, mapWithIndex, modifyAt, nub, nubBy, null, partition, range, reverse, singleton, slice, snoc, some, someRec, sort, sortBy, span, stripPrefix, tail, take, takeEnd, takeWhile, toUnfoldable, transpose, uncons, union, unionBy, unsnoc, unzip, updateAt, zip, zipWith, zipWithA, (!!), (..), (\\))
+import Data.List.Types (NonEmptyList)
+import Data.Maybe (Maybe(..))
+import Data.Ordering (invert)
+import Data.Unfoldable (class Unfoldable)
+import Prelude (class Applicative, class Eq, class Monad, class Ord, type (~>), Ordering, Unit, compare, discard, mod, ($), (+), (==), (>))
+import Data.Tuple (Tuple(..))
 import Data.List (group, null, foldM, singleton, range, length)
 import Effect (Effect)
 import Effect.Class.Console (logShow)
@@ -40,6 +40,7 @@ greater i i1 = if i > i1 then true else false
 listm :: List (Maybe Int)
 listm = ((Just 2):(Just 3):(Just 124):(Just 545):(Just 32):(Just 22):(Just 24):(Just 32):Nil)
 
+invertCompare :: forall a. Ord a => a -> a -> Ordering
 invertCompare a b = invert $ compare a b
 
 maybeBoolean :: Int -> Maybe Boolean

@@ -1,10 +1,9 @@
 module Main where
 
-import Prelude
+import Prelude (class Monoid, Unit, discard, unit, ($))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Monoid
-
+import Data.Monoid (guard, power)
 -- Instances
 -- Monoid Unit
 -- Monoid Ordering

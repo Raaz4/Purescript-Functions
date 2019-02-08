@@ -1,15 +1,12 @@
 module Main where
 
-import Prelude
+import Prelude (class Applicative, Unit, discard, ($), (+))
 import Effect (Effect)
 import Effect.Class.Console (logShow)
-import Data.Traversable
-import Data.Traversable.Accum
-import Data.Maybe
-import Data.Maybe.Last
-import Data.Tuple
-import Data.Monoid.Multiplicative
-import Data.Int
+import Data.Traversable (class Traversable, for, mapAccumL, mapAccumR, scanl, scanr, sequenceDefault, traverseDefault)
+import Data.Traversable.Accum (Accum)
+import Data.Maybe (Maybe(..))
+import Data.Int (fromNumber)
 
 -- Instances
 -- Traversable Array
