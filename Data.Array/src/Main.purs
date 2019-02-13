@@ -70,7 +70,7 @@ greater :: Int -> Int -> Boolean
 greater i i1 = if i > i1 then true else false
 
 arrayint :: Array Int
-arrayint = [2,45,2,7678,34,22,34,344,21,42]
+arrayint = [3,45,2,7678,34,22,34,344,21,42]
 
 arrayin :: Array Int
 arrayin = [3,6,5,3,2,667,45,3212,21]
@@ -94,7 +94,7 @@ arraym :: Array (Maybe Int)
 arraym = [Just 3, Just 6, Just 8, Just 9, Just 90, Just 67]
 
 maybeItself :: Int -> Maybe Int
-maybeItself i = if i `mod` 2 == 0 then (Just i) else (Just (i+1))
+maybeItself i = if i `mod` 2 == 0 then (Just i) else Nothing
 
 maybeBoolean :: Int -> Maybe Boolean
 maybeBoolean i = if i `mod` 2 == 0 then (Just true) else (Just false)
@@ -316,7 +316,7 @@ main = do
   logShow $ singleton1 "abc"
   logShow $ range1 90 4
   logShow $ replicate1 3 "abc"
-  -- logShow $ some1 array1
+  -- logShow $ some1 arrayint :: Array (Array Int)
   -- logShow $ many1 array
   logShow $ null1 array
   logShow $ length1 array
@@ -341,13 +341,15 @@ main = do
   logShow $ updateAtIndices1 [Tuple 1 "a"] arraystr
   logShow $ modifyAt1 4 toUpper arraystr
   logShow $ modifyAtIndices1 [1, 3] toUpper arraystr
-  logShow $ alterAt1 8 maybeItself arrayint
+  logShow $ "---AlertAt---"
+  logShow $ alterAt1 3 maybeItself arrayint
   logShow $ reverse1 array
   logShow $ concatinate arrayar
   logShow $ concatMap1 singleton1 array
   logShow $ filter1 (contains (Pattern "b")) arraystr
   logShow $ partition1 (contains (Pattern "c")) arraystr
   logShow $ filterA1 maybeBoolean arrayint
+  logShow $ "---MapMaybe---"
   logShow $ mapMaybe1 fromNumber array
   logShow $ catMaybes1 arraym
   logShow $ mapWithIndex1 add2 arrayint
