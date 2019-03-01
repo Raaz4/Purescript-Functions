@@ -22,7 +22,7 @@ main :: Effect Unit
 main = do
   log $ "bind : forall m a b. Bind m => m a -> (a -> m b) -> m b"
   logShow $ bind (Just 90.00) fromNumber
-  log $ "\tbindflipped : forall m a b. Bind m => (a -> m b) -> m a -> m b"
+  log $ "bindflipped : forall m a b. Bind m => (a -> m b) -> m a -> m b"
   logShow $ bindFlipped fromNumber (Just 89.00)
   log $ "join : forall a m. Bind m => m (m a) -> m a"
   logShow $ join $ Just (Just 8)

@@ -34,41 +34,24 @@ import Effect.Class.Console (logShow)
 -- Bitraversable Either
 -- (Semigroup b) => Semigroup (Either a b)
 
-either1 :: forall a b c. (a -> c) -> (b -> c) -> Either a b -> c
-either1 a b c = either a b c
-
-choose1 :: forall m a b. Alt m => m a -> m b -> m (Either a b)
-choose1 a b = choose a b
-
-isLeft1 :: forall a b. Either a b -> Boolean
-isLeft1 a = isLeft a
-
-isRight1 :: forall a b. Either a b -> Boolean
-isRight1 a = isRight a
-
-fromLeft1 :: forall a b. Partial => Either a b -> a
-fromLeft1 a = fromLeft a
-
-fromRight1 :: forall a b. Partial => Either a b -> b
-fromRight1 a = fromRight a
-
-note1 :: forall a b. a -> Maybe b -> Either a b
-note1 a b = note a b
-
-note'1 :: forall a b. (Unit -> a) -> Maybe b -> Either a b
-note'1 unit m = note' unit m
-
-hush1 :: forall a b. Either a b -> Maybe b
-hush1 a = hush a
-
 main :: Effect Unit
 main = do
-  logShow $ either1 trunc floor (Left 3.4)
-  logShow $ choose1 (Just 10) (Just 9)
-  logShow $ isLeft1 (Left 9)
-  logShow $ isRight1 (Right 3)
+  log $ "either : forall a b c. (a -> c) -> (b -> c) -> Either a b -> c"
+  logShow $ either trunc floor (Left 3.4)
+  log $ "choose : forall m a b. Alt m => m a -> m b -> m (Either a b)"
+  logShow $ choose (Just 10) (Just 9)
+  log $ "isLeft : forall a b. Either a b -> Boolean"
+  logShow $ isLeft (Left 9)
+  log $ "isRight : forall a b. Either a b -> Boolean"
+  logShow $ isRight (Right 3)
+  log $ "fromLeft : forall a b. Partial => Either a b -> a"
   logShow $ unsafePartial $ fromLeft1 (Left 9)
+  log $ "fromRight : forall a b. Partial => Either a b -> b"
   logShow $ unsafePartial $ fromRight1 (Right 5)
-  logShow $ note1 2 (Just 10)
+  log $ "note : forall a b. a -> Maybe b -> Either a b"
+  logShow $ note 2 (Just 10)
+  log $ "note' : forall a b. (Unit -> a) -> Maybe b -> Either a b"
   -- logShow $ note' (\x -> x+x) (Just 8)
-  logShow $ hush1 (Right 8) :: Maybe Int
+  log $ "hush :: forall a b. Either a b -> Maybe b"
+  logShow $ hush (Right 8) :: Maybe Int
+  

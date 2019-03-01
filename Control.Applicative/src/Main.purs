@@ -26,13 +26,13 @@ arrayint = [1,2,5,4,6,7,4,9,8,5,3,8]
 
 main :: Effect Unit
 main = do
-  log $ "Type of apply : forall f a b. Apply f => f (a -> b) -> f a -> f b"
+  log $ "apply : forall f a b. Apply f => f (a -> b) -> f a -> f b"
   logShow $ apply [ad, sub] arrayint
-  log $ "Type of liftA1 : forall f a b. Applicative f => (a -> b) -> f a -> f b"
+  log $ "liftA1 : forall f a b. Applicative f => (a -> b) -> f a -> f b"
   logShow $ liftA1 ceil arraynum
-  log $ "Type of unless : forall m. Applicative m => Boolean -> m Unit -> m Unit"
+  log $ "unless : forall m. Applicative m => Boolean -> m Unit -> m Unit"
   logShow $ unless true $ Just unit
-  log $ "Type of when : forall m. Applicative m => Boolean -> m Unit -> m Unit"
+  log $ "when : forall m. Applicative m => Boolean -> m Unit -> m Unit"
   logShow $ when false $ Just unit
 
   --  Operators

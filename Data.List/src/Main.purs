@@ -14,7 +14,7 @@ import Prelude (class Applicative, class Eq, class Monad, class Ord, type (~>), 
 import Data.Tuple (Tuple(..))
 import Data.List (group, null, foldM, singleton, range, length)
 import Effect (Effect)
-import Effect.Class.Console (logShow)
+import Effect.Class.Console (log, logShow)
 
 add :: Int -> Int
 add b = 3 + b
@@ -67,268 +67,142 @@ listn = (2.00:2.3:34.44:4.3:343.3:3.3:Nil)
 listl :: List (List Int)
 listl = ((3:2:4:4:45:3:Nil):(2:34:45:45:3:45:43:Nil):(1:2:3:32:34:45:54:Nil):Nil)
 
-toUnfoldable1 :: forall f. Unfoldable f => List ~> f
-toUnfoldable1 list = toUnfoldable list
-
-fromFoldable1 :: forall f. Foldable f => f ~> List
-fromFoldable1 f = fromFoldable f
-
-singleton1 :: forall a. a -> List a
-singleton1 a = singleton a
-
-range1 :: Int -> Int -> List Int
-range1 i ii = range i ii
-
-some1 :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)
-some1 f = some f
-
-someRec1 :: forall f a. MonadRec f => Alternative f => f a -> f (List a)
-someRec1 f = someRec f
-
-many1 :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)
-many1 f = many f
-
-manyRec1 :: forall f a. MonadRec f => Alternative f => f a -> f (List a)
-manyRec1 f = manyRec f
-
-null1 :: forall a. List a -> Boolean
-null1 l = null l
-
-length1 :: forall a. List a -> Int
-length1 list =length list
-
-snoc1 :: forall a. List a -> a -> List a
-snoc1 a list = snoc a list
-
-insert1 :: forall a. Ord a => a -> List a -> List a
-insert1 a l = insert a l
-
-insertBy1 :: forall a. (a -> a -> Ordering) -> a -> List a -> List a
-insertBy1 o a l = insertBy o a l
-
-head1 :: List Int -> Maybe Int
-head1 list = head list
-
-last1 :: List Int -> Maybe Int
-last1 list = last list
-
-tail1 :: forall a. List a -> Maybe (List a)
-tail1 list = tail list
-
-init1 :: forall a. List a -> Maybe (List a)
-init1 list = init list
-
-uncons1 :: forall a. List a -> Maybe { head :: a, tail :: List a }
-uncons1 list = uncons list
-
-unsnoc1 :: forall a. List a -> Maybe { init :: List a, last :: a }
-unsnoc1 list = unsnoc list
-
-index1 :: forall a. List a -> Int -> Maybe a
-index1 list i = index list i
-
-elemIndex1 :: forall a. Eq a => a -> List a -> Maybe Int
-elemIndex1 a l = elemIndex a l
-
-elemLastIndex1 :: forall a. Eq a => a -> List a -> Maybe Int
-elemLastIndex1 a list = elemLastIndex a list
-
-findIndex1 :: forall a. (a -> Boolean) -> List a -> Maybe Int
-findIndex1 b list = findIndex b list
-
-findLastIndex1 :: forall a. (a -> Boolean) -> List a -> Maybe Int
-findLastIndex1 b list = findLastIndex b list
-
-insertAt1 :: forall a. Int -> a -> List a -> Maybe (List a)
-insertAt1 i b list = insertAt i b list
-
-deleteAt1 :: forall a. Int -> List a -> Maybe (List a)
-deleteAt1 i list = deleteAt i list
-
-updateAt1 :: forall a. Int -> a -> List a -> Maybe (List a)
-updateAt1 i a list = updateAt i a list
-
-modifyAt1 :: forall a. Int -> (a -> a) -> List a -> Maybe (List a)
-modifyAt1 i a list = modifyAt i a list
-
-alterAt1 :: forall a. Int -> (a -> Maybe a) -> List a -> Maybe (List a)
-alterAt1 i m list = alterAt i m list
-
-reverse1 :: List ~> List
-reverse1 list = reverse list
-
-concat1 :: forall a. List (List a) -> List a
-concat1 list = concat list
-
-concatMap1 :: forall a b. (a -> List b) -> List a -> List b
-concatMap1 a list = concatMap a list
-
-filter1 :: forall a. (a -> Boolean) -> List a -> List a
-filter1 b list = filter b list
-
-filterM1 :: forall a m. Monad m => (a -> m Boolean) -> List a -> m (List a)
-filterM1 b list = filterM b list
-
-mapMaybe1 :: forall a b. (a -> Maybe b) -> List a -> List b
-mapMaybe1 m list = mapMaybe m list
-
-catMaybes1 :: forall a. List (Maybe a) -> List a
-catMaybes1 listm = catMaybes listm
-
-mapWithIndex1 :: forall a b. (Int -> a -> b) -> List a -> List b
-mapWithIndex1 add list = mapWithIndex add list
-
-sort1 :: forall a. Ord a => List a -> List a
-sort1 list = sort list
-
-sortBy1 :: forall a. (a -> a -> Ordering) -> List a -> List a
-sortBy1 o list = sortBy o list
-
-stripPrefix1 :: forall a. Eq a => Pattern a -> List a -> Maybe (List a)
-stripPrefix1 p list = stripPrefix p list
-
-slice1 :: Int -> Int -> List Int -> List Int
-slice1 i ii list = slice i ii list
-
-take1 :: forall a. Int -> List a -> List a
-take1 i list = take i list
-
-takeEnd1 :: forall a. Int -> List a -> List a
-takeEnd1 i list = takeEnd i list
-
-takeWhile1 :: forall a. (a -> Boolean) -> List a -> List a
-takeWhile1 b list = takeWhile b list
-
-dropEnd1 :: forall a. Int -> List a -> List a
-dropEnd1 i list = dropEnd i list
-
-span1 :: forall a. (a -> Boolean) -> List a -> { init :: List a, rest :: List a }
-span1 b list = span b list
-
-group1 :: forall a. Eq a => List a -> List (NonEmptyList a)
-group1 list = group list
-
-group'1 :: forall a. Ord a => List a -> List (NonEmptyList a)
-group'1 list = group' list
-
-groupBy1 :: forall a. (a -> a -> Boolean) -> List a -> List (NonEmptyList a)
-groupBy1 b list = groupBy b list
-
-partition1 :: forall a. (a -> Boolean) -> List a -> { yes :: List a, no :: List a }
-partition1 b list = partition b list
-
-nub1 :: forall a. Eq a => List a -> List a
-nub1 list = nub list
-
-nubBy1 :: forall a. (a -> a -> Boolean) -> List a -> List a
-nubBy1 b list = nubBy b list
-
-union1 :: forall a. Eq a => List a -> List a -> List a
-union1 list listn = union list listn
-
-unionBy1 :: forall a. (a -> a -> Boolean) -> List a -> List a -> List a
-unionBy1 b list1 list2 = unionBy b list1 list2
-
-delete1 :: forall a. Eq a => a -> List a -> List a
-delete1 a list = delete a list
-
-deleteBy1 :: forall a. (a -> a -> Boolean) -> a -> List a -> List a
-deleteBy1 b a list = deleteBy b a list
-
-difference1 :: forall a. Eq a => List a -> List a -> List a
-difference1 list listi = difference list listi
-
-intersect1 :: forall a. Eq a => List a -> List a -> List a
-intersect1 list listi = intersect list listi
-
-intersectBy1 :: forall a. (a -> a -> Boolean) -> List a -> List a -> List a
-intersectBy1 b list1 list2 = intersectBy b list1 list2
-
-zipWith1 :: forall a b c. (a -> b -> c) -> List a -> List b -> List c
-zipWith1 f list1 list2 = zipWith f list1 list2
-
-zipWithA1 :: forall m a b c. Applicative m => (a -> b -> m c) -> List a -> List b -> m (List c)
-zipWithA1 f list1 list2 = zipWithA f list1 list2
-
-zip1 :: forall a b. List a -> List b -> List (Tuple a b)
-zip1 list1 list2 = zip list1 list2
-
-unzip1 :: forall a b. List (Tuple a b) -> Tuple (List a) (List b)
-unzip1 list = unzip list
-
-transpose1 :: forall a. List (List a) -> List (List a)
-transpose1 list = transpose list
-
-foldM1 :: forall m a b. Monad m => (a -> b -> m a) -> a -> List b -> m a
-foldM1 m a list = foldM m a list
-
 main :: Effect Unit
 main = do
-  logShow $ toUnfoldable1 list :: List _
-  logShow $ fromFoldable1 list
-  logShow $ singleton1 4
-  logShow $ range1 3 8
-  -- logShow $ some1 listlist
-  -- logShow $ someRec1 (Just 4)
-  -- logShow $ many1 array
-  -- logShow $ manyRec1 array
+  log $ "toUnfoldable :: forall f. Unfoldable f => List ~> f"
+  logShow $ toUnfoldable list :: List _
+  log $ "fromFoldable :: forall f. Foldable f => f ~> List"
+  logShow $ fromFoldable list
+  log $ "singleton :: forall a. a -> List a"
+  logShow $ singleton 4
+  log $ "range :: Int -> Int -> List Int"
+  logShow $ range 3 8
+  -- log $ "some :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
+  -- logShow $ some list :: List (List Int)
+  -- log $ "someRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
+  -- logShow $ someRec (Just 4) :: Maybe (List Int)
+  -- log $ "many :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
+  -- logShow $ many array
+  -- log $ "manyRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
+  -- logShow $ manyRec (Just 9)
+  log $ "null :: forall a. List a -> Boolean"
   logShow $ null $ Nil
-  logShow $ length1 list
-  logShow $ snoc1 list 5
-  logShow $ insert1 9 list
-  logShow $ insertBy1 invertCompare 5 list
-  logShow $ head1 list
-  logShow $ last1 list
-  logShow $ tail1 list
-  logShow $ init1 list
-  logShow $ uncons1 list
-  logShow $ unsnoc1 list
-  logShow $ index1 list 3
-  logShow $ elemIndex1 5 list
-  logShow $ elemLastIndex1 5 list
-  logShow $ findIndex1 even list
-  logShow $ findLastIndex1 odd list
-  logShow $ insertAt1 2 3 list
-  logShow $ deleteAt1 4 list
-  logShow $ updateAt1 2 3 list
-  logShow $ modifyAt1 3 itself list
-  logShow $ alterAt1 4 maybeItself list
-  logShow $ reverse1 list
-  logShow $ concat1 listl
-  logShow $ concatMap1 singleton list
-  logShow $ filter1 odd list
-  logShow $ filterM1 maybeBoolean list
-  logShow $ mapMaybe1 fromNumber listn
-  logShow $ catMaybes1 listm
-  logShow $ mapWithIndex1 addi list
-  logShow $ sort1 list
-  logShow $ sortBy1 invertCompare list
-  logShow $ stripPrefix1 (Pattern (6:Nil)) list
-  logShow $ slice1 3 8 list
-  logShow $ take1 3 list
-  logShow $ takeEnd1 4 list
-  logShow $ takeWhile1 odd list
-  logShow $ dropEnd1 5 list
-  logShow $ span1 odd list
-  logShow $ group1 list
-  logShow $ group'1 list
-  logShow $ groupBy1 greater list
-  logShow $ partition1 even list
-  logShow $ nub1 list
-  logShow $ nubBy1 greater list
-  logShow $ union1 list listi
-  logShow $ unionBy1 greater list listi
-  logShow $ delete1 4 list
-  logShow $ deleteBy1 greater 5 list
-  logShow $ difference1 list listi
-  logShow $ intersect1 list listi
-  logShow $ intersectBy1 greater list listi
-  logShow $ zipWith1 addi list listi
-  logShow $ zipWithA1 add4 list listi
-  logShow $ zip1 liststr listi
-  logShow $ unzip1 listTuples
-  logShow $ transpose1 listl
-  logShow $ foldM1 add4 5 listi
+  log $ "length :: forall a. List a -> Int"
+  logShow $ length list
+  log $ "snoc :: forall a. List a -> a -> List a"
+  logShow $ snoc list 5
+  log $ "insert :: forall a. Ord a => a -> List a -> List a"
+  logShow $ insert 9 list
+  log $ "insertBy :: forall a. (a -> a -> Ordering) -> a -> List a -> List a"
+  logShow $ insertBy invertCompare 5 list
+  log $ "head :: List ~> Maybe"
+  logShow $ head list
+  log $ "last :: List ~> Maybe"
+  logShow $ last list
+  log $ "tail :: forall a. List a -> Maybe (List a)"
+  logShow $ tail list
+  log $ "init :: forall a. List a -> Maybe (List a)"
+  logShow $ init list
+  log $ "uncons :: forall a. List a -> Maybe { head :: a, tail :: List a }"
+  logShow $ uncons list
+  log $ "unsnoc :: forall a. List a -> Maybe { init :: List a, last :: a }"
+  logShow $ unsnoc list
+  log $ "index :: forall a. List a -> Int -> Maybe a"
+  logShow $ index list 3
+  log $ "elemIndex :: forall a. Eq a => a -> List a -> Maybe Int"
+  logShow $ elemIndex 5 list
+  log $ "elemLastIndex :: forall a. Eq a => a -> List a -> Maybe Int"
+  logShow $ elemLastIndex 5 list
+  log $ "findIndex :: forall a. (a -> Boolean) -> List a -> Maybe Int"
+  logShow $ findIndex even list
+  log $ "findLastIndex :: forall a. (a -> Boolean) -> List a -> Maybe Int"
+  logShow $ findLastIndex odd list
+  log $ "insertAt :: forall a. Int -> a -> List a -> Maybe (List a)"
+  logShow $ insertAt 2 3 list
+  log $ "deleteAt :: forall a. Int -> List a -> Maybe (List a)"
+  logShow $ deleteAt 4 list
+  log $ "updateAt :: forall a. Int -> a -> List a -> Maybe (List a)"
+  logShow $ updateAt 2 3 list
+  log $ "modifyAt :: forall a. Int -> (a -> a) -> List a -> Maybe (List a)"
+  logShow $ modifyAt 3 itself list
+  log $ "alterAt :: forall a. Int -> (a -> Maybe a) -> List a -> Maybe (List a)"
+  logShow $ alterAt 4 maybeItself list
+  log $ "reverse :: List ~> List"
+  logShow $ reverse list
+  log $ "concat :: forall a. List (List a) -> List a"
+  logShow $ concat listl
+  log $ "concatMap :: forall a b. (a -> List b) -> List a -> List b"
+  logShow $ concatMap singleton list
+  log $ "filter :: forall a. (a -> Boolean) -> List a -> List a"
+  logShow $ filter odd list
+  log $ "filterM :: forall a m. Monad m => (a -> m Boolean) -> List a -> m (List a)"
+  logShow $ filterM maybeBoolean list
+  log $ "mapMaybe :: forall a b. (a -> Maybe b) -> List a -> List b"
+  logShow $ mapMaybe fromNumber listn
+  log $ "catMaybes :: forall a. List (Maybe a) -> List a"
+  logShow $ catMaybes listm
+  log $ "mapWithIndex :: forall a b. (Int -> a -> b) -> List a -> List b"
+  logShow $ mapWithIndex addi list
+  log $ "sort :: forall a. Ord a => List a -> List a"
+  logShow $ sort list
+  log $ "sortBy :: forall a. (a -> a -> Ordering) -> List a -> List a"
+  logShow $ sortBy invertCompare list
+  log $ "stripPrefix :: forall a. Eq a => Pattern a -> List a -> Maybe (List a)"
+  logShow $ stripPrefix (Pattern (6:Nil)) list
+  log $ "slice :: Int -> Int -> List ~> List"
+  logShow $ slice 3 8 list
+  log $ "take :: forall a. Int -> List a -> List a"
+  logShow $ take 3 list
+  log $ "takeEnd :: forall a. Int -> List a -> List a"
+  logShow $ takeEnd 4 list
+  log $ "takeWhile :: forall a. (a -> Boolean) -> List a -> List a"
+  logShow $ takeWhile odd list
+  log $ "drop :: forall a. Int -> List a -> List a"
+  logShow $ dropEnd 5 list
+  log $ "dropEnd :: forall a. Int -> List a -> List a"
+  logShow $ span odd list
+  log $ "dropWhile :: forall a. (a -> Boolean) -> List a -> List a"
+  logShow $ dropWhile odd list
+  log $ "span :: forall a. (a -> Boolean) -> List a -> { init :: List a, rest :: List a }"
+  logShow $ span odd list
+  log $ "group :: forall a. Eq a => List a -> List (NonEmptyList a)"
+  logShow $ group list
+  log $ "group' :: forall a. Ord a => List a -> List (NonEmptyList a)"
+  logShow $ group' list
+  log $ "groupBy :: forall a. (a -> a -> Boolean) -> List a -> List (NonEmptyList a)"
+  logShow $ groupBy greater list
+  log $ "partition :: forall a. (a -> Boolean) -> List a -> { yes :: List a, no :: List a }"
+  logShow $ partition even list
+  log $ "nub :: forall a. Eq a => List a -> List a"
+  logShow $ nub list
+  log $ "nubBy :: forall a. (a -> a -> Boolean) -> List a -> List a"
+  logShow $ nubBy greater list
+  log $ "union :: forall a. Eq a => List a -> List a -> List a"
+  logShow $ union list listi
+  log $ "unionBy :: forall a. (a -> a -> Boolean) -> List a -> List a -> List a"
+  logShow $ unionBy greater list listi
+  log $ "delete :: forall a. Eq a => a -> List a -> List a"
+  logShow $ delete 4 list
+  log $ "deleteBy :: forall a. (a -> a -> Boolean) -> a -> List a -> List a"
+  logShow $ deleteBy greater 5 list
+  log $ "difference :: forall a. Eq a => List a -> List a -> List a"
+  logShow $ difference list listi
+  log $ "intersect :: forall a. Eq a => List a -> List a -> List a"
+  logShow $ intersect list listi
+  log $ "intersectBy :: forall a. (a -> a -> Boolean) -> List a -> List a -> List a"
+  logShow $ intersectBy greater list listi
+  log $ "zipWith :: forall a b c. (a -> b -> c) -> List a -> List b -> List c"
+  logShow $ zipWith addi list listi
+  log $ "zipWithA :: forall m a b c. Applicative m => (a -> b -> m c) -> List a -> List b -> m (List c)"
+  logShow $ zipWithA add4 list listi
+  log $ "zip :: forall a b. List a -> List b -> List (Tuple a b)"
+  logShow $ zip liststr listi
+  log $ "unzip :: forall a b. List (Tuple a b) -> Tuple (List a) (List b)"
+  logShow $ unzip listTuples
+  log $ "transpose :: forall a. List (List a) -> List (List a)"
+  logShow $ transpose listl
+  log $ "foldM :: forall m a b. Monad m => (a -> b -> m a) -> a -> List b -> m a"
+  logShow $ foldM add4 5 listi
   logShow $ "------------ Operators -------------"
   logShow $ 3..30 -- Operator alias for Data.List.range (non-associative / precedence 8)
   logShow $ list !! 5 -- Operator alias for Data.List.index (left-associative / precedence 8)
