@@ -2,48 +2,29 @@ module Main where
 
 import Prelude
 import Effect (Effect)
-import Data.Maybe (Maybe(..))
-import Data.String.CodePoints (CodePoint(..), codePointFromChar, singleton, toCodePointArray, fromCodePointArray, codePointAt, uncons, countPrefix, takeWhile, dropWhile)
-import Effect.Class.Console (logShow)
+import Data.String.CodePoints (CodePoint, codePointAt, codePointFromChar, fromCodePointArray, singleton, toCodePointArray, uncons)
+import Effect.Class.Console (logShow, log)
 
 codePointToBoolean :: CodePoint -> Boolean
-codePointToBoolean c = if c == (codePointFromChar1 'r') then false else true
-
-codePointFromChar1 :: Char -> CodePoint
-codePointFromChar1 c = codePointFromChar c
-
-singleton1 :: CodePoint -> String
-singleton1 c = singleton c
-
-fromCodePointArray1 :: Array CodePoint -> String
-fromCodePointArray1 a = fromCodePointArray a
-
-toCodePointArray1 :: String -> Array CodePoint
-toCodePointArray1 s = toCodePointArray s
-
-codePointAt1 :: Int -> String -> Maybe CodePoint
-codePointAt1 i s = codePointAt i s
-
-uncons1 :: String -> Maybe { head :: CodePoint, tail :: String }
-uncons1 s = uncons s
-
-countPrefix1 :: (CodePoint -> Boolean) -> String -> Int
-countPrefix1 b s = countPrefix b s
-
-takeWhile1 :: (CodePoint -> Boolean) -> String -> String
-takeWhile1 b s = takeWhile b s
-
-dropWhile1 :: (CodePoint -> Boolean) -> String -> String
-dropWhile1 b s = dropWhile b s
+codePointToBoolean c = if c == (codePointFromChar 'r') then false else true
 
 main :: Effect Unit
 main = do
-  logShow $ codePointFromChar1 '%'
-  logShow $ singleton1 (codePointFromChar1 'f')
-  logShow $ fromCodePointArray1 (toCodePointArray "fromCodePointArray")
-  logShow $ toCodePointArray1 "toCodePointArray"
-  logShow $ codePointAt1 3 "codePointAt"
-  logShow $ uncons1 "uncons"
-  -- logShow $ countPrefix1 (\c -> codePointToInt c == 0x1D400) "𝐀𝐀 b c 𝐀"
-  -- logShow $ takeWhile1
-  -- logShow $ dropWhile1
+  log $ "codePointFromChar :: Char -> CodePoint"
+  logShow $ codePointFromChar '%'
+  log $ "singleton :: CodePoint -> String"
+  logShow $ singleton (codePointFromChar 'f')
+  log $ "fromCodePointArray :: Array CodePoint -> String"
+  logShow $ fromCodePointArray (toCodePointArray "fromCodePointArray")
+  log $ "toCodePointArray :: String -> Array CodePoint"
+  logShow $ toCodePointArray "toCodePointArray"
+  log $ "codePointAt :: Int -> String -> Maybe CodePoint"
+  logShow $ codePointAt 3 "codePointAt"
+  log $ "uncons :: String -> Maybe { head :: CodePoint, tail :: String }"
+  logShow $ uncons "uncons"
+  log $ "countPrefix :: (CodePoint -> Boolean) -> String -> Int"
+  -- logShow $ countPrefix (\c -> codePointToInt c == 0x1D400) "𝐀𝐀 b c 𝐀"
+  log $ "takeWhile :: (CodePoint -> Boolean) -> String -> String"
+  -- logShow $ takeWhile
+  log $ "dropWhile :: (CodePoint -> Boolean) -> String -> String"
+  -- logShow $ dropWhile

@@ -1,28 +1,19 @@
 module Main where
 
-import Prelude (class Applicative, Unit, discard, ($))
+import Prelude (Unit, discard, ($))
 import Effect (Effect)
-import Effect.Class.Console (logShow)
-import Data.Unfoldable (class Unfoldable, fromMaybe, none, replicate, replicateA)
+import Effect.Class.Console (logShow,log)
+import Data.Unfoldable (fromMaybe, none, replicate, replicateA)
 import Data.Maybe (Maybe(..))
 import Data.List (List)
-import Data.Traversable (class Traversable)
-
-replicate1 :: forall f a. Unfoldable f => Int -> a -> f a
-replicate1 a b = replicate a b
-
-replicateA1 :: forall m f a. Applicative m => Unfoldable f => Traversable f => Int -> m a -> m (f a)
-replicateA1 i m = replicateA i m
-
-none1 :: forall f a. Unfoldable f => f a
-none1 = none
-
-fromMaybe1 :: forall f a. Unfoldable f => Maybe a -> f a
-fromMaybe1 m = fromMaybe m
 
 main :: Effect Unit
 main = do
+  log $ "replicate :: forall f a. Unfoldable f => Int -> a -> f a"
   logShow $ replicate 4 "this" :: Array _
-  logShow $ replicateA1 3 [5, 7, 9] :: Array (Array _)
-  logShow $ none1 :: List Int
-  logShow $ fromMaybe1 (Just 8) :: Array _
+  log $ "replicateA :: forall m f a. Applicative m => Unfoldable f => Traversable f => Int -> m a -> m (f a)"
+  logShow $ replicateA 3 [5, 7, 9] :: Array (Array _)
+  log $ "none :: forall f a. Unfoldable f => f a"
+  logShow $ none :: List Int
+  log $ "fromMaybe :: forall f a. Unfoldable f => Maybe a -> f a"
+  logShow $ fromMaybe (Just 8) :: Array _

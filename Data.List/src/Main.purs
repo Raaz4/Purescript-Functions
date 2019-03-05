@@ -77,13 +77,13 @@ main = do
   logShow $ singleton 4
   log $ "range :: Int -> Int -> List Int"
   logShow $ range 3 8
-  -- log $ "some :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
+  log $ "some :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
   -- logShow $ some list :: List (List Int)
-  -- log $ "someRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
+  log $ "someRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
   -- logShow $ someRec (Just 4) :: Maybe (List Int)
-  -- log $ "many :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
+  log $ "many :: forall f a. Alternative f => Lazy (f (List a)) => f a -> f (List a)"
   -- logShow $ many array
-  -- log $ "manyRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
+  log $ "manyRec :: forall f a. MonadRec f => Alternative f => f a -> f (List a)"
   -- logShow $ manyRec (Just 9)
   log $ "null :: forall a. List a -> Boolean"
   logShow $ null $ Nil

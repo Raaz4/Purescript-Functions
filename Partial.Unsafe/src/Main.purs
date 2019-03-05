@@ -3,19 +3,13 @@ module Main where
 import Prelude
 import Effect (Effect)
 import Partial.Unsafe (unsafePartial, unsafePartialBecause, unsafeCrashWith)
-import Effect..Class.Console (logShow)
-
-unsafePartial1 :: forall a. (Partial => a) -> a
-unsafePartial1 p = unsafePartial p
-
-unsafePartialBecause1 :: forall a. String -> (Partial => a) -> a
-unsafePartialBecause1 s p = unsafePartialBecause s p
-
-unsafeCrashWith1 :: forall a. String -> a
-unsafeCrashWith1 s = unsafeCrashWith s
+import Effect.Class.Console (logShow, log)
 
 main :: Effect Unit
 main = do
-  logShow $ unsafePartial1 5
-  logShow $ unsafePartialBecause1 "string" 7
-  logShow $ unsafeCrashWith1 "error" :: String
+  log $ "unsafePartial :: forall a. (Partial => a) -> a"
+  logShow $ unsafePartial 5
+  log $ "unsafePartialBecause :: forall a. String -> (Partial => a) -> a"
+  logShow $ unsafePartialBecause "string" 7
+  log $ "unsafeCrashWith :: forall a. String -> a"
+  logShow $ unsafeCrashWith "error" :: String

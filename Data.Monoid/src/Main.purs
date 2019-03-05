@@ -2,7 +2,7 @@ module Main where
 
 import Prelude (class Monoid, Unit, discard, unit, ($))
 import Effect (Effect)
-import Effect.Class.Console (logShow)
+import Effect.Class.Console (logShow, log)
 import Data.Monoid (guard, power)
 -- Instances
 -- Monoid Unit
@@ -15,18 +15,14 @@ import Data.Monoid (guard, power)
 arrayint :: Array Int
 arrayint = [1,2,3,4,5,6,7,8,9]
 
-power1 :: forall m. Monoid m => m -> Int -> m
-power1 m i = power m i
-
-guard1 :: forall m. Monoid m => Boolean -> m -> m
-guard1 b m = guard b m
-
 main :: Effect Unit
 main = do
-  logShow $ power1 "@" 9
-  logShow $ power1 arrayint 3
-  logShow $ power1 unit 7
-  logShow $ guard1 true "#"
-  logShow $ guard1 false "#"
-  logShow $ guard1 true arrayint
-  logShow $ guard1 false arrayint
+  log $ "power :: forall m. Monoid m => m -> Int -> m"
+  logShow $ power "@" 9
+  logShow $ power arrayint 3
+  logShow $ power unit 7
+  log $ "guard :: forall m. Monoid m => Boolean -> m -> m"
+  logShow $ guard true "#"
+  logShow $ guard false "#"
+  logShow $ guard true arrayint
+  logShow $ guard false arrayint
