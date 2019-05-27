@@ -1,10 +1,10 @@
 module Main where
 
-import Prelude (class Bind, class Functor, class Monad, Unit, ap, discard, join, liftM1, unit, unlessM, void, whenM, ($))
+import Data.Int (ceil)
+import Data.Maybe (Maybe (..))
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.Maybe (Maybe (..))
-import Data.Int (ceil)
+import Prelude (class Bind, class Functor, class Monad, Unit, ap, discard, join, liftM1, unit, unlessM, void, whenM, ($))
 
 -- Instances
 -- Monad (Function r)
@@ -18,17 +18,18 @@ maybe = Just(Just 3)
 
 main :: Effect Unit
 main = do
-  log $ "join : forall a m. Bind m => m (m a) -> m a"
-  logShow $ join (Just (Just 5))
-  log $ "void : forall f a. Functor f => f a -> f Unit"
-  logShow $ void array
-  log $ "liftM1 : forall m a b. Monad m => (a -> b) -> m a -> m b"
-  logShow $ liftM1 ceil $ Just 4.9
   log $ "ap : forall m a b. Monad m => m (a -> b) -> m a -> m b"
   logShow $ ap (Just ceil) (Just 5.6)
-  log $ "when : forall m. Monad m => m Boolean -> m Unit -> m Unit"
-  logShow $ whenM (Just false) (Just unit)
-  logShow $ whenM (Just true) (Just unit)
+  log $ "join : forall a m. Bind m => m (m a) -> m a"
+  logShow $ join (Just (Just 5))
+  log $ "liftM1 : forall m a b. Monad m => (a -> b) -> m a -> m b"
+  logShow $ liftM1 ceil $ Just 4.9
   log $ "unlessM : forall m. Monad m => m Boolean -> m Unit -> m Unit"
   logShow $ unlessM (Just true) (Just unit)
   logShow $ unlessM (Just false) (Just unit)
+  log $ "void : forall f a. Functor f => f a -> f Unit"
+  logShow $ void array
+  log $ "when : forall m. Monad m => m Boolean -> m Unit -> m Unit"
+  logShow $ whenM (Just false) (Just unit)
+  logShow $ whenM (Just true) (Just unit)
+  

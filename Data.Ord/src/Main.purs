@@ -1,9 +1,9 @@
 module Main where
 
-import Prelude (class Ord, class Ring, Ordering, Unit, between, clamp, comparing, discard, max, min, ($), (<), (<=), (>), (>=))
+import Data.Ord (abs, greaterThan, greaterThanOrEq, lessThan, lessThanOrEq, signum)
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.Ord (abs, greaterThan, greaterThanOrEq, lessThan, lessThanOrEq, signum)
+import Prelude (class Ord, class Ring, Ordering, Unit, between, clamp, comparing, discard, max, min, ($), (<), (<=), (>), (>=))
 
 -- Instances
 -- Ord Boolean

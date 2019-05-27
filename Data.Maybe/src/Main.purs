@@ -1,10 +1,10 @@
 module Main where
 
-import Prelude (Unit, discard, ($), (+))
+import Data.Maybe (Maybe(..), fromJust, fromMaybe, fromMaybe', isJust, isNothing, maybe, maybe', optional)
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.Maybe (Maybe(..), fromJust, fromMaybe, fromMaybe', isJust, isNothing, maybe, maybe', optional)
 import Partial.Unsafe (unsafePartial)
+import Prelude (Unit, discard, ($), (+))
 
 -- Instances
 -- Functor Maybe
@@ -27,11 +27,11 @@ import Partial.Unsafe (unsafePartial)
 -- (Bounded a) => Bounded (Maybe a)
 -- (Show a) => Show (Maybe a)
 
-array :: Array Int
-array = [1,2,3,4,5,32,23,32]
-
 add :: Number -> Number
 add n = n+1.0
+
+array :: Array Int
+array = [1,2,3,4,5,32,23,32]
 
 main :: Effect Unit
 main = do

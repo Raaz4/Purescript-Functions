@@ -1,13 +1,13 @@
 module Main where
 
-import Prelude (Unit, discard, ($))
-import Effect (Effect)
-import Data.Either (Either(..), either, choose, isLeft, isRight, fromLeft, fromRight, note, note', hush)
-import Partial.Unsafe (unsafePartial)
 import Control.Alt (class Alt)
-import Math (floor, trunc)
+import Data.Either (Either(..), either, choose, isLeft, isRight, fromLeft, fromRight, note, note', hush)
 import Data.Maybe (Maybe(..))
+import Effect (Effect)
 import Effect.Class.Console (logShow)
+import Math (floor, trunc)
+import Partial.Unsafe (unsafePartial)
+import Prelude (Unit, discard, ($))
 
 -- Instances
 -- Functor (Either a)
@@ -36,22 +36,22 @@ import Effect.Class.Console (logShow)
 
 main :: Effect Unit
 main = do
-  log $ "either : forall a b c. (a -> c) -> (b -> c) -> Either a b -> c"
-  logShow $ either trunc floor (Left 3.4)
   log $ "choose : forall m a b. Alt m => m a -> m b -> m (Either a b)"
   logShow $ choose (Just 10) (Just 9)
-  log $ "isLeft : forall a b. Either a b -> Boolean"
-  logShow $ isLeft (Left 9)
-  log $ "isRight : forall a b. Either a b -> Boolean"
-  logShow $ isRight (Right 3)
+  log $ "either : forall a b c. (a -> c) -> (b -> c) -> Either a b -> c"
+  logShow $ either trunc floor (Left 3.4)
   log $ "fromLeft : forall a b. Partial => Either a b -> a"
   logShow $ unsafePartial $ fromLeft1 (Left 9)
   log $ "fromRight : forall a b. Partial => Either a b -> b"
   logShow $ unsafePartial $ fromRight1 (Right 5)
+  log $ "hush :: forall a b. Either a b -> Maybe b"
+  logShow $ hush (Right 8) :: Maybe Int
+  log $ "isLeft : forall a b. Either a b -> Boolean"
+  logShow $ isLeft (Left 9)
+  log $ "isRight : forall a b. Either a b -> Boolean"
+  logShow $ isRight (Right 3)
   log $ "note : forall a b. a -> Maybe b -> Either a b"
   logShow $ note 2 (Just 10)
   log $ "note' : forall a b. (Unit -> a) -> Maybe b -> Either a b"
   -- logShow $ note' (\x -> x+x) (Just 8)
-  log $ "hush :: forall a b. Either a b -> Maybe b"
-  logShow $ hush (Right 8) :: Maybe Int
   

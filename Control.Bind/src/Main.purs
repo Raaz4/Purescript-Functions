@@ -1,12 +1,12 @@
 module Main where
 
-import Prelude (class Bind, Unit, bind, discard, ifM, join, ($), (+), (-), (<=<), (=<<), (>=>), (>>=))
-import Effect (Effect)
-import Effect.Class.Console (logShow, log)
 import Control.Bind (bindFlipped, composeKleisli, composeKleisliFlipped)
+import Data.Array (head, tail)
 import Data.Int (fromNumber)
 import Data.Maybe (Maybe (..))
-import Data.Array (head, tail)
+import Effect (Effect)
+import Effect.Class.Console (logShow, log)
+import Prelude (class Bind, Unit, bind, discard, ifM, join, ($), (+), (-), (<=<), (=<<), (>=>), (>>=))
 
 -- Instances
 -- Bind (Function r)
@@ -24,8 +24,6 @@ main = do
   logShow $ bind (Just 90.00) fromNumber
   log $ "bindflipped : forall m a b. Bind m => (a -> m b) -> m a -> m b"
   logShow $ bindFlipped fromNumber (Just 89.00)
-  log $ "join : forall a m. Bind m => m (m a) -> m a"
-  logShow $ join $ Just (Just 8)
   log $ "composeKleisli : forall a b c m. Bind m => (a -> m b) -> (b -> m c) -> a -> m c"
   logShow $ composeKleisli tail tail arrayint
   log $ "composeKleisliFlipped : forall a b c m. Bind m => (b -> m c) -> (a -> m b) -> a -> m c"
@@ -33,6 +31,8 @@ main = do
   log $ "ifM : forall a m. Bind m => m Boolean -> m a -> m a -> m a"
   logShow $ ifM (Just true) (Just 9) (Just 100)
   logShow $ ifM (Just false) (Just 9) (Just 100)
+  log $ "join : forall a m. Bind m => m (m a) -> m a"
+  logShow $ join $ Just (Just 8)
   log $ "\n------------ Operators -------------\n"
   logShow $ (Just 9.0) >>= fromNumber -- Operator alias for Control.Bind.bind (left-associative / precedence 1)
   logShow $ fromNumber =<< (Just 45.00) -- Operator alias for Control.Bind.bindFlipped (right-associative / precedence 1)

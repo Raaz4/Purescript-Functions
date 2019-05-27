@@ -1,9 +1,9 @@
 module Main where
 
-import Prelude
+import Data.DivisionRing (leftDiv, rightDiv)
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.DivisionRing (leftDiv, rightDiv)
+import Prelude
 
 -- Instances
 -- DivisionRing Number

@@ -1,8 +1,8 @@
 module Main where
 
-import Prelude (class Eq, class EuclideanRing, Unit, discard, gcd, lcm, ($), (/))
 import Effect (Effect)
 import Effect.Class.Console (log, logShow)
+import Prelude (class Eq, class EuclideanRing, Unit, discard, gcd, lcm, ($), (/))
 
 foreign import intDegree :: Int -> Int
 foreign import intDiv :: Int -> Int -> Int

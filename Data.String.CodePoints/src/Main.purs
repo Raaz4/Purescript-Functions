@@ -1,9 +1,10 @@
 module Main where
 
-import Prelude
-import Effect (Effect)
 import Data.String.CodePoints (CodePoint, codePointAt, codePointFromChar, fromCodePointArray, singleton, toCodePointArray, uncons)
+import Effect (Effect)
+import Data.StrMap
 import Effect.Class.Console (logShow, log)
+import Prelude
 
 codePointToBoolean :: CodePoint -> Boolean
 codePointToBoolean c = if c == (codePointFromChar 'r') then false else true
@@ -27,4 +28,5 @@ main = do
   log $ "takeWhile :: (CodePoint -> Boolean) -> String -> String"
   -- logShow $ takeWhile
   log $ "dropWhile :: (CodePoint -> Boolean) -> String -> String"
+  log $ insert "asasjh" "asdfsadf" empty
   -- logShow $ dropWhile

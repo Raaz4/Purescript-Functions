@@ -1,33 +1,13 @@
 module Main where
 
-import Prelude (Unit, ($), discard, (*), (-), (+), (/))
+import Data.Either (Either(..))
+import Data.Either.Nested (at1, at10, at2, at3, at4, at5, at6, at7, at8, at9, either1, either10, either2, either3, either4, either5, either6, either7, either8, either9, in1, in10, in2, in3, in4, in5, in6, in7, in8, in9)
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.Either.Nested (at1, at10, at2, at3, at4, at5, at6, at7, at8, at9, either1, either10, either2, either3, either4, either5, either6, either7, either8, either9, in1, in10, in2, in3, in4, in5, in6, in7, in8, in9)
-import Data.Either (Either(..))
+import Prelude (Unit, ($), discard, (*), (-), (+), (/))
 
 main :: Effect Unit
 main = do
-  log $ "in1 : forall a z. a -> Either a z"
-  logShow $ in1 5 :: Either _ Int
-  log $ "in2 : forall a b z. b -> Either a b z"
-  logShow $ in2 4 :: Either Int (Either _ Int)
-  log $ "in3 : forall a b c z. c -> Either a b c z"
-  logShow $ in3 5 :: Either Int (Either Int (Either _ Int))
-  log $ "in4 : forall a b c d z. d -> Either a b c d z"
-  logShow $ in4 3 :: Either Int (Either Int (Either Int (Either _ Int)))
-  log $ "in5 : forall a b c d e z. e -> Either a b c d e z"
-  logShow $ in5 9 :: Either Int (Either Int (Either Int (Either Int (Either _ Int))))
-  log $ "in6 : forall a b c d e f z. f -> Either a b c d e f z"
-  logShow $ in6 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))
-  log $ "in7 : forall a b c d e f g z. g -> Either a b c d e f g z"
-  logShow $ in7 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int))))))
-  log $ "in8 : forall a b c d e f g h z. h -> Either a b c d e f g h z"
-  logShow $ in8 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))))
-  log $ "in9 : forall a b c d e f g h i z. i -> Either a b c d e f g h i z"
-  logShow $ in9 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int))))))))
-  log $ "in10 : forall a b c d e f g h i j z. j -> Either a b c d e f g h i j z"
-  logShow $ in10 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))))))
   log $ "at1 : forall r a z. r -> (a -> r) -> a  z -> r"
   logShow $ at1 61 (\a -> a*a) (Left 4)
   log $ "at2 : forall r a b z. r -> (b -> r) -> a  b  z -> r"
@@ -68,5 +48,25 @@ main = do
   logShow $ either9 (\a -> a-6) (\b -> b+89) (\c -> c+55) (\d -> d/2) (\e -> e+45) (\f -> f-33) (\g -> g+6) (\h -> h/5) (\i -> i*i) (Right (Right (Right (Right (Right (Right (Right (Right (Left 88)))))))))
   log $ "either10 : forall r a b c d e f g h i j. (a -> r) -> (b -> r) -> (c -> r) -> (d -> r) -> (e -> r) -> (f -> r) -> (g -> r) -> (h -> r) -> (i -> r) -> (j -> r) -> Either10 a b c d e f g h i j -> r"
   logShow $ either10 (\a -> a-6) (\b -> b+89) (\c -> c+55) (\d -> d/2) (\e -> e+45) (\f -> f-33) (\g -> g+6) (\h -> h/5) (\i -> i*i) (\j -> j+j) (Right (Right (Right (Right (Right (Right (Right (Right (Right (Left 88))))))))))
+  log $ "in1 : forall a z. a -> Either a z"
+  logShow $ in1 5 :: Either _ Int
+  log $ "in2 : forall a b z. b -> Either a b z"
+  logShow $ in2 4 :: Either Int (Either _ Int)
+  log $ "in3 : forall a b c z. c -> Either a b c z"
+  logShow $ in3 5 :: Either Int (Either Int (Either _ Int))
+  log $ "in4 : forall a b c d z. d -> Either a b c d z"
+  logShow $ in4 3 :: Either Int (Either Int (Either Int (Either _ Int)))
+  log $ "in5 : forall a b c d e z. e -> Either a b c d e z"
+  logShow $ in5 9 :: Either Int (Either Int (Either Int (Either Int (Either _ Int))))
+  log $ "in6 : forall a b c d e f z. f -> Either a b c d e f z"
+  logShow $ in6 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))
+  log $ "in7 : forall a b c d e f g z. g -> Either a b c d e f g z"
+  logShow $ in7 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int))))))
+  log $ "in8 : forall a b c d e f g h z. h -> Either a b c d e f g h z"
+  logShow $ in8 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))))
+  log $ "in9 : forall a b c d e f g h i z. i -> Either a b c d e f g h i z"
+  logShow $ in9 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int))))))))
+  log $ "in10 : forall a b c d e f g h i j z. j -> Either a b c d e f g h i j z"
+  logShow $ in10 3 :: Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either Int (Either _ Int)))))))))
 
 

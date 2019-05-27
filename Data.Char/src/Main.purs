@@ -1,13 +1,14 @@
 module Main where
 
-import Prelude
+import Data.Char (toCharCode, fromCharCode)
 import Effect (Effect)
 import Effect.Class.Console (logShow, log)
-import Data.Char (toCharCode, fromCharCode)
+import Prelude
 
 main :: Effect Unit
 main = do
-  log $ "toCharCode : Char -> Int"
-  logShow $ toCharCode '1'
   log $ "fromCharCode : Int -> Maybe Char"
   logShow $ fromCharCode 97
+  log $ "toCharCode : Char -> Int"
+  logShow $ toCharCode '1'
+  
